@@ -1,0 +1,501 @@
+"","item_id","category","price","sellable_online","other_colors","depth","height","width"
+"1",60406785,"Chairs",149,TRUE,"No",44,103,52
+"2",99221446,"Tables & desks",5465,TRUE,"No",NA,NA,NA
+"3",29221765,"Bookcases & shelving units",660,TRUE,"No",35,176,86
+"4",20403374,"Sofas & armchairs",395,TRUE,"Yes",NA,NA,NA
+"5",89256262,"Chairs",1895,TRUE,"Yes",164,104,117
+"6",50165079,"Nursery furniture",375,TRUE,"No",53,93,52
+"7",40284191,"Sofas & armchairs",150,TRUE,"No",NA,15,NA
+"8",19291315,"Cabinets & cupboards",375,TRUE,"No",47,92,45
+"9",439468,"Wardrobes",995,TRUE,"No",47,186,120
+"10",49252553,"Chairs",400,TRUE,"No",61,87,56
+"11",49300827,"Cabinets & cupboards",1850,TRUE,"Yes",42,192,120
+"12",49304217,"Bar furniture",2176,TRUE,"No",NA,NA,NA
+"13",99257280,"Sofas & armchairs",8240,TRUE,"Yes",164,102,367
+"14",70228325,"Outdoor furniture",205,TRUE,"No",NA,49,89
+"15",10252974,"Tables & desks",825,TRUE,"Yes",NA,NA,110
+"16",89239786,"Sofas & armchairs",4580,TRUE,"Yes",88,85,285
+"17",50374271,"Tables & desks",375,TRUE,"Yes",38,66,54
+"18",79130027,"Sofas & armchairs",1685,TRUE,"Yes",53,21,86
+"19",278578,"Bookcases & shelving units",59,TRUE,"No",27,140,60
+"20",69323757,"Beds",395,TRUE,"No",NA,NA,85
+"21",30213076,"Tables & desks",175,TRUE,"Yes",50,75,73
+"22",79305913,"Wardrobes",4200,TRUE,"No",66,236,200
+"23",99192401,"Sofas & armchairs",1836,TRUE,"Yes",106,88,178
+"24",44361010,"Beds",49,TRUE,"No",NA,NA,NA
+"25",404204,"Tables & desks",595,TRUE,"Yes",NA,48,75
+"26",400545,"Chairs",345,TRUE,"No",51,114,43
+"27",80338408,"TV & media furniture",27,TRUE,"Yes",28,NA,20
+"28",30236153,"Cabinets & cupboards",17,TRUE,"No",30,NA,17
+"29",29278219,"TV & media furniture",1385,TRUE,"Yes",41,95,336
+"30",80362974,"Children's furniture",295,TRUE,"No",53,35,62
+"31",59161487,"Tables & desks",1099,TRUE,"No",NA,72,75
+"32",80213074,"Children's furniture",276,TRUE,"Yes",50,75,105
+"33",99304795,"Chairs",1475,TRUE,"No",NA,NA,80
+"34",70304121,"Sofas & armchairs",320,TRUE,"Yes",NA,NA,NA
+"35",347614,"Wardrobes",895,TRUE,"No",59,216,62
+"36",50407021,"Sofas & armchairs",356,TRUE,"No",98,62,24
+"37",50334303,"Bookcases & shelving units",25,TRUE,"No",NA,NA,NA
+"38",39276682,"Cabinets & cupboards",2775,TRUE,"No",47,192,135
+"39",39218512,"Wardrobes",1410,TRUE,"No",NA,236,110
+"40",99279381,"Sofas & armchairs",104,TRUE,"Yes",NA,NA,75
+"41",99277240,"Sofas & armchairs",3540,TRUE,"Yes",98,104,160
+"42",80419070,"Chairs",1196,TRUE,"No",NA,NA,NA
+"43",20449517,"Wardrobes",45,TRUE,"No",50,NA,76
+"44",19830588,"Chairs",995,TRUE,"Yes",82,100,68
+"45",19305671,"Wardrobes",3120,TRUE,"No",66,236,150
+"46",19272699,"Bookcases & shelving units",1335,TRUE,"No",40,190,254
+"47",99282538,"Cabinets & cupboards",1294,TRUE,"Yes",45,101,61
+"48",89284712,"Sofas & armchairs",1995,TRUE,"Yes",98,83,171
+"49",9285701,"Chairs",3015,TRUE,"No",NA,NA,87
+"50",10294511,"TV & media furniture",375,TRUE,"Yes",40,38,120
+"51",10411421,"Tables & desks",95,TRUE,"No",41,43,56
+"52",29285521,"Beds",2945,TRUE,"Yes",98,83,160
+"53",29269724,"Chairs",1395,TRUE,"Yes",89,78,89
+"54",49277247,"Chests of drawers & drawer units",456,TRUE,"No",57,73,60
+"55",79272696,"Bookcases & shelving units",1125,TRUE,"No",55,110,234
+"56",49212067,"Wardrobes",1181,TRUE,"No",55,216,164
+"57",20292776,"Chairs",69,TRUE,"No",42,NA,40
+"58",99275627,"Chairs",945,TRUE,"No",68,NA,68
+"59",60353838,"Chairs",220,TRUE,"No",45,77,41
+"60",262879,"Chairs",695,TRUE,"Yes",73,75,70
+"61",89281030,"Tables & desks",1590,TRUE,"No",NA,NA,80
+"62",40296599,"Beds",125,TRUE,"No",NA,68,97
+"63",50339763,"Outdoor furniture",110,TRUE,"No",44,NA,62
+"64",10248519,"Nursery furniture",595,TRUE,"No",NA,80,66
+"65",79285439,"Sofas & armchairs",1260,TRUE,"Yes",93,83,93
+"66",69253108,"Outdoor furniture",88,TRUE,"Yes",NA,NA,62
+"67",79157601,"Wardrobes",2892,TRUE,"No",50,NA,261
+"68",69157475,"Wardrobes",444,TRUE,"No",40,216,84
+"69",338407,"Bookcases & shelving units",35,TRUE,"Yes",31,NA,9
+"70",348717,"TV & media furniture",25,TRUE,"No",NA,NA,NA
+"71",50391143,"Chests of drawers & drawer units",345,TRUE,"No",41,109,45
+"72",80398633,"Sofas & armchairs",900,TRUE,"No",NA,49,73
+"73",40347886,"Bookcases & shelving units",25,TRUE,"No",11,NA,33
+"74",9290123,"Cabinets & cupboards",356,TRUE,"Yes",35,107,35
+"75",242278,"Cabinets & cupboards",676,TRUE,"Yes",47,150,57
+"76",79140696,"Tables & desks",615,TRUE,"Yes",NA,73,90
+"77",90226797,"Cabinets & cupboards",145,TRUE,"No",NA,NA,NA
+"78",69248386,"Bookcases & shelving units",1110,TRUE,"No",30,179,259
+"79",99278956,"Sofas & armchairs",1250,TRUE,"Yes",NA,NA,NA
+"80",9227532,"Outdoor furniture",1588,TRUE,"Yes",80,73,160
+"81",70404875,"Bar furniture",129,TRUE,"No",44,95,50
+"82",60323592,"Cabinets & cupboards",15,TRUE,"No",NA,NA,NA
+"83",29111253,"Sofas & armchairs",1660,TRUE,"Yes",NA,NA,NA
+"84",10334319,"Cabinets & cupboards",55,TRUE,"Yes",NA,NA,NA
+"85",30346986,"Chairs",50,TRUE,"No",21,40,22
+"86",69239607,"Bookcases & shelving units",347,TRUE,"No",41,197,132
+"87",79150746,"Beds",2995,TRUE,"Yes",151,96,230
+"88",69128567,"Wardrobes",1280,TRUE,"Yes",58,201,175
+"89",60353763,"Chests of drawers & drawer units",495,TRUE,"No",58,70,33
+"90",49297274,"Bar furniture",1266,TRUE,"No",NA,NA,NA
+"91",339204,"Outdoor furniture",729,TRUE,"No",67,80,118
+"92",80419070,"Tables & desks",1196,TRUE,"No",NA,NA,NA
+"93",39305180,"Tables & desks",2275,TRUE,"No",NA,NA,95
+"94",10422504,"Chairs",345,TRUE,"Yes",49,79,46
+"95",360479,"Tables & desks",25,TRUE,"No",NA,NA,83
+"96",79286434,"Bookcases & shelving units",620,TRUE,"Yes",35,80,140
+"97",49221298,"Tables & desks",1575,TRUE,"No",NA,NA,NA
+"98",40299890,"TV & media furniture",475,TRUE,"Yes",40,64,120
+"99",30308395,"Chairs",175,TRUE,"No",44,63,44
+"100",327772,"Sideboards, buffets & console tables",2100,TRUE,"No",48,92,145
+"101",70301542,"Bookcases & shelving units",725,TRUE,"Yes",39,182,182
+"102",90339290,"TV & media furniture",595,TRUE,"No",36,54,150
+"103",99304781,"Tables & desks",1195,TRUE,"No",NA,NA,80
+"104",60305705,"Chests of drawers & drawer units",395,TRUE,"No",40,75,80
+"105",89307643,"Cabinets & cupboards",114,TRUE,"Yes",35,35,35
+"106",39296901,"Chairs",289,TRUE,"No",NA,NA,75
+"107",79239843,"Chests of drawers & drawer units",620,TRUE,"Yes",47,99,40
+"108",90325518,"Chairs",220,TRUE,"No",58,NA,58
+"109",69265984,"Cabinets & cupboards",1540,TRUE,"Yes",47,212,81
+"110",49189203,"Bookcases & shelving units",515,TRUE,"Yes",35,72,105
+"111",59217804,"Sofas & armchairs",1176,TRUE,"Yes",78,69,212
+"112",90421911,"Cabinets & cupboards",597,TRUE,"No",43,173,120
+"113",39149892,"Sofas & armchairs",1245,TRUE,"Yes",100,87,142
+"114",60441562,"Bookcases & shelving units",60,TRUE,"No",NA,26,60
+"115",50347616,"Wardrobes",1645,TRUE,"No",59,216,122
+"116",19239817,"Sofas & armchairs",1660,TRUE,"Yes",88,85,153
+"117",9177626,"Bookcases & shelving units",305,TRUE,"Yes",28,237,40
+"118",59216668,"Tables & desks",255,TRUE,"No",NA,73,75
+"119",288638,"Chairs",100,TRUE,"No",NA,39,NA
+"120",49229261,"Tables & desks",2765,TRUE,"No",NA,NA,NA
+"121",19309725,"Bookcases & shelving units",458,TRUE,"No",41,85,189
+"122",49288236,"Café furniture",450,TRUE,"Yes",NA,75,NA
+"123",49221038,"Cabinets & cupboards",620,TRUE,"Yes",35,80,140
+"124",10385950,"Chests of drawers & drawer units",395,TRUE,"No",46,83,90
+"125",29302573,"Cabinets & cupboards",1400,TRUE,"Yes",42,74,180
+"126",70451635,"Chairs",45,TRUE,"No",NA,NA,39
+"127",49275903,"Outdoor furniture",2781,TRUE,"Yes",NA,NA,NA
+"128",89302971,"Bookcases & shelving units",2470,TRUE,"Yes",42,230,240
+"129",70323600,"Cabinets & cupboards",19,TRUE,"No",NA,NA,NA
+"130",40349847,"Beds",1595,TRUE,"Yes",51,16,140
+"131",50285265,"Outdoor furniture",103,TRUE,"Yes",NA,90,70
+"132",49061228,"Cabinets & cupboards",510,TRUE,"Yes",40,48,120
+"133",10338416,"Cabinets & cupboards",27,TRUE,"Yes",28,NA,20
+"134",70236151,"Bookcases & shelving units",29,TRUE,"Yes",35,NA,16
+"135",79296857,"Tables & desks",1695,TRUE,"No",NA,NA,NA
+"136",59278699,"Sofas & armchairs",520,TRUE,"Yes",NA,NA,NA
+"137",9305068,"TV & media furniture",1390,TRUE,"Yes",42,202,120
+"138",60265163,"Children's furniture",22,TRUE,"Yes",35,NA,44
+"139",80331973,"Wardrobes",49,TRUE,"No",51,149,74
+"140",59157353,"Wardrobes",678,TRUE,"No",55,216,84
+"141",49188005,"Wardrobes",1629,TRUE,"No",55,216,205
+"142",9277782,"Sofas & armchairs",4448,TRUE,"Yes",NA,84,266
+"143",70351481,"Trolleys",99,TRUE,"No",50,74,37
+"144",79297545,"TV & media furniture",1700,TRUE,"Yes",42,74,240
+"145",79306173,"Wardrobes",3775,TRUE,"No",66,236,200
+"146",89931560,"Beds",675,TRUE,"Yes",NA,NA,154
+"147",335885,"Bookcases & shelving units",6,TRUE,"No",2,4,5
+"148",70370352,"Cabinets & cupboards",29,TRUE,"No",18,NA,NA
+"149",19287714,"Outdoor furniture",1247,TRUE,"Yes",82,88,98
+"150",99216652,"Tables & desks",475,TRUE,"No",NA,74,75
+"151",60253184,"Tables & desks",545,TRUE,"Yes",NA,NA,80
+"152",69241097,"Beds",570,TRUE,"Yes",64,14,153
+"153",30428326,"Bookcases & shelving units",39,TRUE,"No",27,74,60
+"154",20400243,"Tables & desks",89,TRUE,"No",NA,18,50
+"155",70253541,"Chairs",195,TRUE,"No",43,79,41
+"156",89265836,"Sideboards, buffets & console tables",1550,TRUE,"Yes",37,134,162
+"157",29286460,"Bookcases & shelving units",1002,TRUE,"Yes",35,72,280
+"158",69285232,"Sofas & armchairs",6030,TRUE,"Yes",164,83,249
+"159",10275862,"Bookcases & shelving units",495,TRUE,"Yes",39,147,147
+"160",49304769,"Tables & desks",3165,TRUE,"No",NA,NA,105
+"161",79277019,"Chairs",4265,TRUE,"No",NA,74,100
+"162",9239498,"Chests of drawers & drawer units",920,TRUE,"No",47,76,120
+"163",80322855,"Cabinets & cupboards",22,TRUE,"Yes",32,NA,9
+"164",70286645,"Bookcases & shelving units",75,TRUE,"Yes",37,33,33
+"165",80291731,"Outdoor furniture",205,TRUE,"No",NA,72,56
+"166",89041709,"Nursery furniture",85,TRUE,"No",59,90,56
+"167",79102958,"Nursery furniture",410,TRUE,"Yes",44,52,94
+"168",79286491,"Cabinets & cupboards",377,TRUE,"Yes",25,107,70
+"169",90116553,"Chairs",179,TRUE,"No",60,68,47
+"170",50393830,"Beds",149,TRUE,"No",NA,68,97
+"171",49214306,"Tables & desks",356,TRUE,"No",NA,74,60
+"172",10459903,"Sideboards, buffets & console tables",295,TRUE,"Yes",39,147,77
+"173",69254810,"Sofas & armchairs",6575,TRUE,"Yes",252,104,327
+"174",70444348,"Cabinets & cupboards",60,TRUE,"Yes",NA,26,60
+"175",59303123,"Chairs",310,TRUE,"No",69,NA,69
+"176",39276917,"Wardrobes",5345,TRUE,"No",60,236,250
+"177",90398623,"Sofas & armchairs",1400,TRUE,"No",93,104,93
+"178",20433371,"Tables & desks",175,TRUE,"Yes",NA,42,NA
+"179",30352246,"Bar furniture",175,TRUE,"No",44,63,44
+"180",89278754,"Sofas & armchairs",835,TRUE,"Yes",NA,NA,NA
+"181",29287445,"Bookcases & shelving units",500,TRUE,"Yes",30,237,40
+"182",70330813,"Chairs",55,TRUE,"No",42,NA,44
+"183",89221319,"Chairs",3065,TRUE,"No",NA,NA,NA
+"184",99304781,"Chairs",1195,TRUE,"No",NA,NA,80
+"185",50295306,"Cabinets & cupboards",150,TRUE,"Yes",40,NA,180
+"186",19194649,"TV & media furniture",4260,TRUE,"Yes",40,230,300
+"187",80404672,"Chairs",375,TRUE,"No",53,90,50
+"188",9222252,"Tables & desks",439,TRUE,"No",NA,74,60
+"189",29277352,"Bookcases & shelving units",183.6,TRUE,"No",NA,197,66
+"190",49061228,"Bookcases & shelving units",510,TRUE,"Yes",40,48,120
+"191",30452613,"Bookcases & shelving units",90,TRUE,"No",4,110,NA
+"192",69285939,"Bookcases & shelving units",51,TRUE,"No",27,74,60
+"193",60365167,"Outdoor furniture",129,TRUE,"No",NA,48,55
+"194",39207716,"Chairs",255,TRUE,"Yes",56,NA,58
+"195",10192013,"Children's furniture",89,TRUE,"No",NA,NA,NA
+"196",40348895,"Bookcases & shelving units",70,TRUE,"No",NA,NA,25
+"197",49280042,"Bookcases & shelving units",315,TRUE,"Yes",30,106,80
+"198",60334722,"Chairs",345,TRUE,"No",56,82,55
+"199",353761,"Tables & desks",200,TRUE,"Yes",23,23,58
+"200",29248864,"Cabinets & cupboards",663,TRUE,"No",35,95,130
+"201",89297663,"Bookcases & shelving units",670,TRUE,"No",51,173,173
+"202",29180524,"Chairs",385,TRUE,"No",50,50,90
+"203",99248380,"Bookcases & shelving units",990,TRUE,"No",30,124,259
+"204",10372976,"Beds",695,TRUE,"No",NA,84,240
+"205",340047,"Bookcases & shelving units",15,TRUE,"No",1,4,29
+"206",60299691,"Beds",30,TRUE,"No",NA,NA,NA
+"207",415194,"Cabinets & cupboards",1295,TRUE,"Yes",35,123,121
+"208",19277116,"Bookcases & shelving units",315,TRUE,"Yes",28,202,80
+"209",50334317,"Cabinets & cupboards",45,TRUE,"Yes",NA,NA,NA
+"210",99221743,"Chairs",825,TRUE,"Yes",78,75,83
+"211",19290603,"Beds",4841,TRUE,"No",97,95,160
+"212",9305068,"Bookcases & shelving units",1390,TRUE,"Yes",42,202,120
+"213",80341496,"Sofas & armchairs",600,TRUE,"No",NA,NA,140
+"214",20342074,"Tables & desks",745,TRUE,"No",NA,45,60
+"215",49294548,"Bookcases & shelving units",1035,TRUE,"No",36,175,300
+"216",20305707,"Nursery furniture",645,TRUE,"No",52,139,80
+"217",9218368,"Wardrobes",4685,TRUE,"No",NA,236,160
+"218",40426138,"Chairs",395,TRUE,"No",51,102,40
+"219",89277486,"Chairs",1948,TRUE,"Yes",93,84,113
+"220",39251926,"Outdoor furniture",1220,TRUE,"No",94,90,98
+"221",80393372,"Trolleys",1495,TRUE,"No",NA,90,77
+"222",40348715,"Bookcases & shelving units",25,TRUE,"No",NA,NA,NA
+"223",105064,"Sideboards, buffets & console tables",445,TRUE,"No",NA,75,37
+"224",29208194,"Chairs",370,TRUE,"Yes",69,NA,74
+"225",79267280,"Nursery furniture",995,TRUE,"No",NA,86,66
+"226",49123405,"Children's furniture",350,TRUE,"No",44,56,99
+"227",59279439,"Sofas & armchairs",680,TRUE,"Yes",80,45,80
+"228",59131626,"Chairs",6965,TRUE,"No",NA,74,100
+"229",9903014,"Children's furniture",451,TRUE,"Yes",50,140,105
+"230",69020473,"Bookcases & shelving units",2295,TRUE,"Yes",30,237,200
+"231",79302721,"Cabinets & cupboards",920,TRUE,"Yes",42,74,120
+"232",60214159,"Tables & desks",475,TRUE,"Yes",65,73,140
+"233",20452637,"Tables & desks",175,TRUE,"Yes",NA,60,40
+"234",10302295,"TV & media furniture",295,TRUE,"No",36,62,120
+"235",20345633,"Bookcases & shelving units",695,TRUE,"No",35,161,90
+"236",89288135,"Wardrobes",6585,TRUE,"No",60,236,250
+"237",409447,"Sofas & armchairs",700,TRUE,"Yes",NA,NA,NA
+"238",79285302,"Cabinets & cupboards",3240,TRUE,"Yes",45,200,160
+"239",19290071,"Sofas & armchairs",350,TRUE,"Yes",98,62,24
+"240",19205884,"Cabinets & cupboards",1870,TRUE,"Yes",40,192,120
+"241",20252266,"Chests of drawers & drawer units",49,TRUE,"No",NA,24,31
+"242",29931596,"Beds",495,TRUE,"Yes",NA,NA,156
+"243",10122647,"Chairs",345,TRUE,"No",45,91,40
+"244",50340163,"Beds",450,TRUE,"No",NA,NA,140
+"245",69194005,"TV & media furniture",1390,TRUE,"Yes",42,74,180
+"246",60416138,"Tables & desks",695,TRUE,"No",NA,75,80
+"247",29157608,"Wardrobes",437,TRUE,"No",36,NA,51
+"248",70340379,"Tables & desks",275,TRUE,"No",NA,47,NA
+"249",29282853,"Sofas & armchairs",2370,TRUE,"Yes",99,83,192
+"250",70451065,"Sofas & armchairs",2395,TRUE,"No",90,86,171
+"251",328347,"Sofas & armchairs",375,TRUE,"Yes",NA,NA,NA
+"252",49300144,"Wardrobes",995,TRUE,"No",35,236,100
+"253",70370352,"Bookcases & shelving units",29,TRUE,"No",18,NA,NA
+"254",79180593,"Wardrobes",1590,TRUE,"Yes",66,236,200
+"255",99278225,"TV & media furniture",1265,TRUE,"Yes",41,95,276
+"256",294795,"Cabinets & cupboards",75,TRUE,"Yes",NA,38,60
+"257",30334605,"Bookcases & shelving units",220,TRUE,"Yes",25,70,70
+"258",39117674,"Sofas & armchairs",460,TRUE,"Yes",NA,NA,NA
+"259",19297685,"Bookcases & shelving units",990,TRUE,"No",51,173,148
+"260",19280680,"Chairs",2615,TRUE,"No",NA,74,87
+"261",59254165,"Chairs",2725,TRUE,"No",NA,74,87
+"262",10404519,"Outdoor furniture",125,TRUE,"No",92,75,2
+"263",69282399,"Tables & desks",844,TRUE,"Yes",45,61,41
+"264",30371056,"Cabinets & cupboards",39,TRUE,"Yes",35,NA,NA
+"265",39291418,"Outdoor furniture",841,TRUE,"Yes",NA,NA,NA
+"266",20222458,"Tables & desks",45,TRUE,"No",NA,3,37
+"267",79898306,"Nursery furniture",155,TRUE,"No",21,30,99
+"268",9046433,"Tables & desks",715,TRUE,"No",NA,NA,75
+"269",10251451,"Cabinets & cupboards",425,TRUE,"No",40,63,119
+"270",59131626,"Tables & desks",6965,TRUE,"No",NA,74,100
+"271",39931609,"Beds",945,TRUE,"Yes",59,NA,156
+"272",351125,"Sofas & armchairs",125,TRUE,"Yes",NA,NA,NA
+"273",59336374,"Cabinets & cupboards",139,TRUE,"Yes",35,35,35
+"274",9304196,"Chairs",195,TRUE,"No",50,87,52
+"275",99305158,"Chairs",2875,TRUE,"No",NA,NA,95
+"276",70296343,"Cabinets & cupboards",150,TRUE,"Yes",NA,64,60
+"277",20116778,"Tables & desks",1195,TRUE,"No",NA,74,NA
+"278",30333842,"Bookcases & shelving units",95,TRUE,"Yes",54,NA,84
+"279",39261874,"Chairs",795,TRUE,"Yes",68,NA,68
+"280",89304786,"Tables & desks",1195,TRUE,"No",NA,NA,80
+"281",70362427,"Nursery furniture",395,TRUE,"No",NA,53,66
+"282",99254677,"Sofas & armchairs",4185,TRUE,"Yes",98,104,235
+"283",49102304,"Nursery furniture",195,TRUE,"No",21,30,NA
+"284",19111220,"Sofas & armchairs",1340,TRUE,"Yes",NA,NA,NA
+"285",10356127,"Nursery furniture",30,TRUE,"No",NA,NA,48
+"286",10438166,"Sofas & armchairs",345,TRUE,"Yes",NA,NA,NA
+"287",30298023,"Nursery furniture",15,TRUE,"No",NA,23,30
+"288",121766,"Bar furniture",395,TRUE,"No",45,102,40
+"289",19299726,"Beds",7765,TRUE,"Yes",98,83,349
+"290",60116960,"Sofas & armchairs",100,TRUE,"No",55,21,92
+"291",9279050,"Bookcases & shelving units",772,TRUE,"No",36,181,197
+"292",40411108,"Outdoor furniture",75,TRUE,"No",62,NA,62
+"293",40454367,"Nursery furniture",20,TRUE,"No",NA,NA,NA
+"294",80196357,"Children's furniture",125,TRUE,"No",29,55,28
+"295",49932670,"Tables & desks",235,TRUE,"Yes",NA,74,75
+"296",40319398,"Chairs",1495,TRUE,"No",83,106,92
+"297",29194427,"Beds",1375,TRUE,"Yes",NA,NA,154
+"298",20089242,"Nursery furniture",25,TRUE,"No",NA,36,30
+"299",272656,"Chairs",745,TRUE,"No",50,90,48
+"300",40347508,"TV & media furniture",22,TRUE,"Yes",NA,NA,NA
+"301",59257437,"Sofas & armchairs",6440,TRUE,"Yes",98,102,275
+"302",400550,"Chairs",345,TRUE,"No",52,114,43
+"303",99285004,"TV & media furniture",420,TRUE,"Yes",40,202,60
+"304",20416593,"Chairs",19,TRUE,"No",37,NA,37
+"305",59221660,"Wardrobes",5240,TRUE,"No",60,236,300
+"306",80226137,"Nursery furniture",95,TRUE,"No",NA,NA,48
+"307",20373621,"Outdoor furniture",709,TRUE,"No",82,74,82
+"308",29161573,"Chairs",6965,TRUE,"No",NA,74,100
+"309",29278158,"Beds",4270,TRUE,"Yes",98,104,231
+"310",50470512,"Bookcases & shelving units",245,TRUE,"No",30,NA,83
+"311",9335555,"Tables & desks",330,TRUE,"Yes",NA,74,60
+"312",10141170,"Chairs",70,TRUE,"No",NA,NA,NA
+"313",79157615,"Wardrobes",650,TRUE,"No",35,NA,91
+"314",20452618,"Bookcases & shelving units",95,TRUE,"No",54,NA,84
+"315",69297287,"Bookcases & shelving units",375,TRUE,"No",51,160,182
+"316",99014376,"Tables & desks",359,TRUE,"No",NA,72,75
+"317",60261037,"Tables & desks",945,TRUE,"No",70,74,140
+"318",80227797,"TV & media furniture",476,TRUE,"No",42,45,160
+"319",89302971,"TV & media furniture",2470,TRUE,"Yes",42,230,240
+"320",40365371,"Children's furniture",59,TRUE,"No",36,67,39
+"321",70246089,"Bar furniture",595,TRUE,"No",36,84,38
+"322",59213839,"Tables & desks",1315,TRUE,"No",NA,73,60
+"323",50363649,"Bar furniture",140,TRUE,"Yes",36,NA,36
+"324",69303066,"Chairs",225,TRUE,"No",68,NA,68
+"325",90338422,"Cabinets & cupboards",27,TRUE,"Yes",24,NA,21
+"326",327772,"Cabinets & cupboards",2100,TRUE,"No",48,92,145
+"327",69276039,"Sofas & armchairs",5810,TRUE,"Yes",98,102,275
+"328",19277036,"Chairs",4145,TRUE,"No",NA,74,100
+"329",39286558,"Bookcases & shelving units",141,TRUE,"No",27,74,180
+"330",338412,"TV & media furniture",27,TRUE,"Yes",24,NA,21
+"331",360479,"Nursery furniture",25,TRUE,"No",NA,NA,83
+"332",89280766,"Tables & desks",3775,TRUE,"No",NA,NA,NA
+"333",50422494,"Wardrobes",395,TRUE,"No",51,178,60
+"334",40323593,"TV & media furniture",45,TRUE,"Yes",NA,NA,NA
+"335",50401986,"Outdoor furniture",316,TRUE,"No",42,52,136
+"336",365924,"Chests of drawers & drawer units",240,TRUE,"No",47,45,40
+"337",59279180,"Cabinets & cupboards",495,TRUE,"Yes",35,70,95
+"338",79276246,"Bookcases & shelving units",429,TRUE,"No",41,199,132
+"339",50300666,"Cabinets & cupboards",445,TRUE,"Yes",41,95,78
+"340",20346072,"Bookcases & shelving units",30,TRUE,"No",12,35,33
+"341",79305852,"Wardrobes",1940,TRUE,"No",44,236,150
+"342",30294987,"Bookcases & shelving units",49,TRUE,"No",55,19,69
+"343",116595,"Bookcases & shelving units",995,TRUE,"No",37,214,96
+"344",50308002,"Children's furniture",10,TRUE,"No",NA,10,30
+"345",400545,"Bar furniture",345,TRUE,"No",51,114,43
+"346",9256553,"Sofas & armchairs",1670,TRUE,"Yes",NA,NA,NA
+"347",99264964,"Wardrobes",3110,TRUE,"Yes",60,236,150
+"348",89252202,"Chairs",3225,TRUE,"No",NA,74,NA
+"349",29301700,"Chairs",310,TRUE,"Yes",69,NA,69
+"350",49268653,"Beds",2025,TRUE,"Yes",NA,182,NA
+"351",20397014,"Sofas & armchairs",200,TRUE,"Yes",NA,NA,NA
+"352",10407136,"Children's furniture",345,TRUE,"No",62,75,59
+"353",9229946,"Tables & desks",495,TRUE,"Yes",NA,NA,60
+"354",19306307,"Wardrobes",3885,TRUE,"No",66,236,200
+"355",50295472,"Chairs",675,TRUE,"No",73,82,79
+"356",9247257,"Wardrobes",3905,TRUE,"No",66,236,200
+"357",29932181,"Tables & desks",119,TRUE,"Yes",NA,74,60
+"358",20336836,"Chairs",245,TRUE,"Yes",69,NA,74
+"359",79278269,"Bookcases & shelving units",215,TRUE,"Yes",39,77,77
+"360",9259702,"Tables & desks",1875,TRUE,"No",NA,74,78
+"361",60409821,"Outdoor furniture",75,TRUE,"No",NA,25,62
+"362",50365361,"Outdoor furniture",29,TRUE,"No",NA,NA,35
+"363",60334312,"TV & media furniture",35,TRUE,"No",NA,NA,NA
+"364",79331865,"Chairs",155,TRUE,"No",67,NA,67
+"365",91415,"Children's furniture",5,TRUE,"No",NA,NA,28
+"366",60351900,"Chairs",84,TRUE,"No",44,45,44
+"367",40450350,"Bookcases & shelving units",225,TRUE,"No",35,81,80
+"368",90342688,"Chairs",79.2,TRUE,"No",47,90,41
+"369",347510,"Cabinets & cupboards",22,TRUE,"Yes",NA,NA,NA
+"370",80397916,"Tables & desks",845,TRUE,"No",NA,76,67
+"371",9256529,"Sofas & armchairs",545,TRUE,"Yes",NA,NA,NA
+"372",39301785,"TV & media furniture",1670,TRUE,"Yes",42,240,120
+"373",90301225,"Bookcases & shelving units",445,TRUE,"Yes",35,190,60
+"374",30115066,"Chairs",49,TRUE,"No",47,76,45
+"375",20396260,"Sofas & armchairs",170,TRUE,"Yes",NA,NA,NA
+"376",338407,"Cabinets & cupboards",35,TRUE,"Yes",31,NA,9
+"377",75305709,"Chests of drawers & drawer units",139,TRUE,"No",30,70,62
+"378",40463055,"Trolleys",125,TRUE,"No",NA,65,28
+"379",29297294,"Chairs",889,TRUE,"No",NA,NA,75
+"380",19222299,"Bookcases & shelving units",450,TRUE,"Yes",159,147,77
+"381",30260807,"Tables & desks",795,TRUE,"Yes",NA,52,65
+"382",40196241,"Chests of drawers & drawer units",545,TRUE,"Yes",48,66,67
+"383",49252181,"Tables & desks",1475,TRUE,"No",NA,74,78
+"384",80214549,"Chests of drawers & drawer units",165,TRUE,"Yes",48,55,40
+"385",39248590,"Wardrobes",1560,TRUE,"No",57,251,140
+"386",9048413,"Outdoor furniture",261,TRUE,"No",NA,NA,NA
+"387",69242073,"Sofas & armchairs",1360,TRUE,"Yes",88,85,121
+"388",89303046,"Chairs",225,TRUE,"No",68,NA,68
+"389",9288224,"Café furniture",550,TRUE,"No",NA,105,NA
+"390",89186778,"Beds",8551,TRUE,"Yes",NA,135,180
+"391",90442824,"Tables & desks",545,TRUE,"Yes",54,90,90
+"392",73755709,"Bookcases & shelving units",45,TRUE,"Yes",NA,124,30
+"393",89248371,"Bookcases & shelving units",1045,TRUE,"No",30,226,219
+"394",80339790,"TV & media furniture",17,TRUE,"No",18,NA,24
+"395",39287789,"Outdoor furniture",3781,TRUE,"Yes",82,88,225
+"396",99252541,"Chairs",695,TRUE,"Yes",68,NA,68
+"397",59277652,"Beds",2932,TRUE,"Yes",113,84,186
+"398",9282547,"Tables & desks",1255,TRUE,"Yes",45,101,61
+"399",99014376,"Chairs",359,TRUE,"No",NA,72,75
+"400",69253146,"Tables & desks",810,TRUE,"Yes",79,102,90
+"401",39251931,"Outdoor furniture",1075,TRUE,"No",94,90,83
+"402",69281804,"Bookcases & shelving units",915,TRUE,"Yes",30,202,120
+"403",40337694,"TV & media furniture",425,TRUE,"Yes",41,53,120
+"404",19190340,"Chairs",295,TRUE,"Yes",58,97,51
+"405",29296874,"Tables & desks",1245,FALSE,"No",NA,NA,NA
+"406",29289821,"Outdoor furniture",3442,TRUE,"Yes",NA,NA,NA
+"407",69252868,"Nursery furniture",675,TRUE,"Yes",50,192,60
+"408",70265247,"Cabinets & cupboards",17,TRUE,"No",28,NA,9
+"409",20204925,"Outdoor furniture",99,TRUE,"No",38,42,40
+"410",10357004,"Bookcases & shelving units",35,TRUE,"No",38,NA,NA
+"411",60305705,"Nursery furniture",395,TRUE,"No",40,75,80
+"412",10297656,"Tables & desks",295,TRUE,"No",NA,45,45
+"413",39246911,"Wardrobes",590,TRUE,"No",38,236,50
+"414",60365167,"Children's furniture",129,TRUE,"No",NA,48,55
+"415",59289990,"Outdoor furniture",1095,TRUE,"Yes",NA,NA,NA
+"416",89260075,"Outdoor furniture",2034,TRUE,"Yes",80,84,223
+"417",39252756,"Wardrobes",425,TRUE,"Yes",50,128,60
+"418",89259840,"Tables & desks",3795,TRUE,"No",NA,74,85
+"419",69304829,"Beds",1092,TRUE,"No",NA,NA,80
+"420",59099136,"Beds",795,TRUE,"Yes",NA,111,146
+"421",39279567,"Chairs",2345,TRUE,"No",NA,NA,NA
+"422",60295706,"TV & media furniture",417,TRUE,"Yes",27,27,160
+"423",49306184,"Tables & desks",195,TRUE,"No",NA,74,75
+"424",40300662,"Cabinets & cupboards",395,TRUE,"Yes",41,95,78
+"425",99288012,"Bookcases & shelving units",718,TRUE,"No",50,124,174
+"426",79128821,"Wardrobes",2805,TRUE,"Yes",60,201,200
+"427",29267659,"Outdoor furniture",1679,TRUE,"Yes",NA,73,90
+"428",80336433,"Cabinets & cupboards",3,TRUE,"Yes",27,NA,NA
+"429",40197486,"Tables & desks",795,TRUE,"Yes",NA,31,95
+"430",60248418,"Chairs",15,TRUE,"No",24,13,37
+"431",90095428,"Outdoor furniture",55,TRUE,"No",40,79,39
+"432",50321697,"Sofas & armchairs",175,TRUE,"Yes",NA,NA,NA
+"433",14630009,"Tables & desks",275,TRUE,"No",NA,73,75
+"434",60246080,"Café furniture",180,TRUE,"No",46,76,50
+"435",79303495,"Bookcases & shelving units",910,TRUE,"No",30,179,134
+"436",60323592,"Bookcases & shelving units",15,TRUE,"No",NA,NA,NA
+"437",50046152,"TV & media furniture",9,TRUE,"No",27,NA,NA
+"438",89249403,"Cabinets & cupboards",700,TRUE,"No",47,167,45
+"439",29268946,"Outdoor furniture",323,TRUE,"Yes",NA,NA,NA
+"440",30357003,"Cabinets & cupboards",45,TRUE,"No",38,NA,NA
+"441",40399267,"Sofas & armchairs",695,TRUE,"No",NA,38,47
+"442",9278338,"Room dividers",1350,TRUE,"Yes",39,182,182
+"443",90291698,"Cabinets & cupboards",175,TRUE,"No",NA,64,60
+"444",69282525,"Tables & desks",1044,TRUE,"Yes",45,101,41
+"445",49017749,"Bookcases & shelving units",474.2,TRUE,"No",41,87,190
+"446",20424362,"Beds",549,TRUE,"No",NA,94,88
+"447",39046064,"TV & media furniture",4030,TRUE,"Yes",NA,214,332
+"448",80215332,"Tables & desks",249,TRUE,"No",NA,50,50
+"449",10253025,"Tables & desks",500,TRUE,"Yes",NA,NA,110
+"450",19278502,"Sofas & armchairs",5040,TRUE,"Yes",164,104,277
+"451",29217495,"Tables & desks",480,TRUE,"Yes",NA,74,75
+"452",99214200,"Tables & desks",215,TRUE,"Yes",NA,74,60
+"453",50357785,"Outdoor furniture",25,TRUE,"No",NA,NA,NA
+"454",40291629,"TV & media furniture",60,TRUE,"Yes",NA,26,60
+"455",80332473,"Beds",85,TRUE,"No",NA,80,NA
+"456",39297123,"Chairs",2075,TRUE,"No",NA,NA,78
+"457",10411242,"Beds",995,TRUE,"No",NA,195,135
+"458",40202746,"Chairs",25,TRUE,"No",38,NA,NA
+"459",39272655,"Bookcases & shelving units",375,TRUE,"No",55,110,85
+"460",10091453,"Children's furniture",275,TRUE,"No",44,94,99
+"461",39216754,"Beds",1846,TRUE,"Yes",151,66,NA
+"462",79158144,"Wardrobes",774,TRUE,"No",55,216,124
+"463",10334611,"Bookcases & shelving units",75,TRUE,"No",34,10,69
+"464",90229017,"Beds",795,TRUE,"No",NA,NA,90
+"465",9157261,"Wardrobes",440,TRUE,"No",35,NA,51
+"466",19288006,"Bookcases & shelving units",760,TRUE,"No",50,226,174
+"467",99294560,"Bookcases & shelving units",695,TRUE,"No",36,175,202
+"468",50413507,"Cabinets & cupboards",1595,TRUE,"Yes",37,197,90
+"469",80292330,"Outdoor furniture",103,TRUE,"No",NA,111,52
+"470",59221189,"Tables & desks",925,TRUE,"No",NA,NA,NA
+"471",80321021,"Outdoor furniture",155,TRUE,"No",NA,71,44
+"472",79306333,"Wardrobes",2125,TRUE,"No",44,236,150
+"473",30141975,"Chairs",19,TRUE,"No",NA,NA,NA
+"474",19297261,"Tables & desks",915,TRUE,"No",NA,NA,74
+"475",70319288,"Outdoor furniture",27,TRUE,"No",NA,NA,NA
+"476",49046978,"Bookcases & shelving units",705,TRUE,"No",50,171,307
+"477",50343331,"Chairs",327,TRUE,"No",45,53,88
+"478",79325223,"Chairs",225,TRUE,"No",51,49,39
+"479",10441786,"Children's furniture",195,TRUE,"No",53,NA,53
+"480",70288630,"Chairs",175,TRUE,"No",50,65,53
+"481",29257504,"Sofas & armchairs",395,TRUE,"Yes",NA,44,62
+"482",59306268,"Chairs",589,TRUE,"No",NA,75,74
+"483",9010702,"Tables & desks",299,TRUE,"No",NA,72,75
+"484",228705,"Beds",1095,TRUE,"No",53,21,86
+"485",10469186,"Sofas & armchairs",745,TRUE,"No",84,89,137
+"486",19185433,"Beds",195,TRUE,"No",NA,NA,77
+"487",29262435,"Outdoor furniture",356,TRUE,"No",NA,73,71
+"488",60334312,"Bookcases & shelving units",35,TRUE,"No",NA,NA,NA
+"489",70246089,"Chairs",595,TRUE,"No",36,84,38
+"490",70404366,"Sofas & armchairs",2396,TRUE,"No",98,95,141
+"491",9303719,"Wardrobes",1550,TRUE,"No",38,236,150
+"492",80441556,"TV & media furniture",100,TRUE,"No",NA,38,60
+"493",30425988,"Bookcases & shelving units",95,TRUE,"No",NA,26,60
+"494",79241940,"Chairs",1385,TRUE,"No",NA,104,74
+"495",90383457,"Chests of drawers & drawer units",240,TRUE,"No",47,45,40
+"496",59252637,"Nursery furniture",395,TRUE,"Yes",50,50,90
+"497",80280676,"Tables & desks",399,TRUE,"Yes",NA,NA,NA
+"498",50214678,"Bookcases & shelving units",225,TRUE,"No",36,175,51
+"499",79305220,"Sofas & armchairs",350,TRUE,"Yes",164,83,111
+"500",9301720,"Tables & desks",595,TRUE,"No",NA,75,70
