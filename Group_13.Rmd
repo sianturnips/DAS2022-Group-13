@@ -1,6 +1,6 @@
 ---
-title: "Group 13 Presentation"
-author: "Sian Turner"
+title: "Group 13 GLM - Ikea Dataset"
+author: "Group 13"
 date: "14/03/2022"
 output: pdf_document
 ---
@@ -8,5 +8,48 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r loadpackages, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(moderndive)
+library(gapminder)
+library(sjPlot)
+library(stats)
+library(jtools)
+library(dplyr)
+library(zoo)
+```
+
+The dataset contains information on IKEA furniture from Saudi Arabia, a column has been added indicating if the piece of furniture costs more than 1000 Riyals.
+
+
+
+```{r dataset, echo=FALSE, eval=TRUE, warning=FALSE,message=FALSE}
+data<- read.csv("dataset13.csv")
+
+data<-mutate(data, thousandRiyals=ifelse(price>= 1000,"Yes", "No"))
+head(data)
+```
+
+The summary of the data indicates that there is a lot of NA values in the height, depth and width columns.
+ 
+``` {r summary, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+summary(data)
+```
+
+To solve this, I computed the mean of the depth, height and width by the category and replaced the NA's by this value shown below.
+
+``` {r replace NA, echo=FALSE, eval=TRUE, warning=FALSE, message= FALSE}
+cols<-c("depth","height","width")
+data<-data%>%
+  group_by(category)%>%
+  mutate_at(cols, na.aggregate)
+data
+```
+
+
+
+
+
 
 
