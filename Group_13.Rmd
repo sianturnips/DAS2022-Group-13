@@ -21,6 +21,7 @@ library(zoo)
 library(kableExtra)
 library(scales)
 library(gridExtra)
+library(janitor)
 ```
 
 # Introduction and Cleaning the Data {#sec:intro}
@@ -58,7 +59,7 @@ data
 
 This section is to explore the data set graphically and gain insight before fitting the Generalised Linear Model (GLM).
 
-This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart. It can be seen that the lowest number of furniture items is for Room dividers and the highest is for Chairs.There is a lot of variability in the number of items in each category.
+This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart. It can be seen that the lowest number of furniture items is for Room dividers and the highest is for Chairs. There is a lot of variability in the number of items in each category.
 
 ```{r table1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 table1<-data%>%
@@ -80,7 +81,7 @@ barchart1<-ggplot(data=data, aes(x=category))+
 barchart1 
 ```
   
-The barchart below is showing the total number in each category by if they are priced above or below 1000 Riyals.It shows that some categories have no items priced greater than 1000 Riyals.
+The barchart below is showing the total number in each category by if they are priced above or below 1000 Riyals. It shows that some categories have no items priced greater than 1000 Riyals.
 
 ```{r barchart2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart2} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals."}
 barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
@@ -92,7 +93,7 @@ barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
 barchart2
 ```
   
-The below box plots explore the relationship between some categorical variables and the price of the item.Only one item is not available online so the plots including that are not very illuminating.
+The below box plots explore the relationship between some categorical variables and the price of the item. Only one item is not available online so the plots including that are not very illuminating.
 
 The first shows some potential outliers in some categories which are much more expensive than other items in that category. 
 
@@ -106,7 +107,7 @@ boxplot1<-ggplot(data, aes(x=category, y=price))+
 boxplot1
 ```
 
-The box plot below shows whether it is available to buy in other colours and the items price.It appears that the price range for items available in other colours is slightly higher.
+The box plot below shows whether it is available to buy in other colours and the items price. It appears that the price range for items available in other colours is slightly higher.
 ```{r boxplot2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot2} Price of the Item of Furniture by Availability in other Colours." }
 
 boxplot2<-ggplot(data, aes(x=other_colors, y=price, fill=other_colors))+
@@ -117,7 +118,30 @@ boxplot2<-ggplot(data, aes(x=other_colors, y=price, fill=other_colors))+
 boxplot2
 ```
 
+The below table shows the proportion of items that are available in different colours and costing greater than 1000 Riyals.
+```{r table2, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
+
+table2<-data%>%
+  tabyl(other_colors, thousandRiyals)%>%
+  adorn_percentages() %>%
+adorn_pct_formatting() %>%
+adorn_ns() 
+table2
+```
+
+```{r barchart3,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart3} Proportion of Items Availbale in different Colours and if the Price is Greater than 1000 Riyals." }
+
+barchart3<-ggplot(data=data, aes(x=other_colors, group=thousandRiyals))+
+  geom_bar(aes(y=..prop.., fill=thousandRiyals),stat="count", position="dodge")+
+  labs(x="Available in Other Colours", y="Proportion")+ scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart3
+
+
+```
+
+
 The next three plots show the height, width and depth of the item of furniture and whether it costs more than 1000 Riyals. These show that the items that cost more than 1000 Riyals have bigger height, width, depth and general size.
+
 ```{r boxplot3, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot3} Height of Item by whether the Price is greater than 1000 Riyals." }
 
 boxplot3<-ggplot(data, aes(x=thousandRiyals, y=height, fill=thousandRiyals))+
@@ -154,3 +178,8 @@ boxplot5
 
 grid.arrange(boxplot3, boxplot4, boxplot5, ncol=2)
 ```
+
+
+
+
+
