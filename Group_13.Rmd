@@ -81,7 +81,7 @@ barchart1
   
 The barchart below is showing the total number in each category by if they are priced above or below 1000 Riyals.It shows that some categories have no items priced greater than 1000 Riyals.
 
-```{r barchart2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals."}
+```{r barchart2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart2} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals."}
 barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
   geom_bar(position="dodge")+
   labs(x="Category", y="Count", title="Total Number of Items of Furniture by Category and \n Price greater than 1000 Riyasl")+
@@ -91,7 +91,53 @@ barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
 barchart2
 ```
   
-  
+The below box plots explore the relationship between some categorical variables and the price of the item.
+The first shows some potential outliers in some categories which are much more expensive than other items in that category. 
 
+```{r boxplot1,, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot1} Price of the Item of Furniture by Category." }
 
+boxplot1<-ggplot(data, aes(x=category, y=price))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Category", y="Price(Riyals)", title="Price of Furniture by Category")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=3))
+boxplot1
+```
 
+The box plot below shows whether it is available to buy in other colours and the items price.It appears that the price range for items available in other colours is slightly higher.
+```{r boxplot2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot2} Price of the Item of Furniture by Availability in other Colours." }
+
+boxplot2<-ggplot(data, aes(x=other_colors, y=price))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Available in other Colours", y="Price(Riyals)", title="Price of Furniture by Availability in Different Colours")
+ 
+boxplot2
+```
+
+The next three plots show the height, width and depth of the item of furniture and whether it costs more than 1000 Riyals. These show that the items that cost more than 1000 Riyals have bigger height, width, depth and general size.
+```{r boxplot3, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot3} Height of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot3<-ggplot(data, aes(x=thousandRiyals, y=height))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Price greater than 1000 Riyals", y="Height", title="Height of Furniture by Price greater than 1000 Riyals")
+ 
+boxplot3
+```
+
+```{r boxplot4, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot4} Width of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot4<-ggplot(data, aes(x=thousandRiyals, y=width))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Price greater than 1000 Riyals", y="Width", title="Width of Furniture by Price greater than 1000 Riyals")
+ 
+boxplot4
+```
+
+```{r boxplot5, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot5} Depth of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot5<-ggplot(data, aes(x=thousandRiyals, y=depth))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Price greater than 1000 Riyals", y="Depth", title="Depth of Furniture by Price greater than 1000 Riyals")
+ 
+boxplot5
+```
