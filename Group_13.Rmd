@@ -18,7 +18,12 @@ library(stats)
 library(jtools)
 library(dplyr)
 library(zoo)
+library(kableExtra)
+library(scales)
 ```
+
+# Introduction and Cleaning the Data {#sec:intro}
+
 
 The dataset contains information on IKEA furniture from Saudi Arabia, a column has been added indicating if the piece of furniture costs more than 1000 Riyals.
 
@@ -48,8 +53,28 @@ data
 ```
 
 
+# Exploratory Analysis {#sec:exploratory}
 
+This section is to explore the data set graphically and gain insight before fitting the Generalised Linear Model (GLM).
 
+This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart.
 
+```{r table1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+table1<-data%>%
+  group_by(category)%>%
+  summarize(count=n())%>%
+ kable(caption='\\label{tab:table1} Total number of items of furniture by category') %>%
+kable_styling(font_size = 8, latex_options = "hold_position", full_width=FALSE)
+table1
+```
 
+```{r barchart1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='h', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category."}
 
+barchart1<-ggplot(data=data, aes(x=category))+
+  geom_bar(fill="violetred")+
+  labs(x="Category", y="Count", title="Total Number of Items of Furniture by Category")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=5))
+barchart1 
+```
+  
