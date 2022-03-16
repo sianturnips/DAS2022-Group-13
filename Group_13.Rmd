@@ -57,7 +57,7 @@ data
 
 This section is to explore the data set graphically and gain insight before fitting the Generalised Linear Model (GLM).
 
-This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart.
+This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart. It can be seen that the lowest number of furniture items is for Room dividers and the highest is for Chairs.There is a lot of variability in the number of items in each category.
 
 ```{r table1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 table1<-data%>%
@@ -66,9 +66,10 @@ table1<-data%>%
  kable(caption='\\label{tab:table1} Total number of items of furniture by category') %>%
 kable_styling(font_size = 8, latex_options = "hold_position", full_width=FALSE)
 table1
+
 ```
 
-```{r barchart1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='h', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category."}
+```{r barchart1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category."}
 
 barchart1<-ggplot(data=data, aes(x=category))+
   geom_bar(fill="violetred")+
@@ -78,3 +79,19 @@ barchart1<-ggplot(data=data, aes(x=category))+
 barchart1 
 ```
   
+The barchart below is showing the total number in each category by if they are priced above or below 1000 Riyals.It shows that some categories have no items priced greater than 1000 Riyals.
+
+```{r barchart2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals."}
+barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
+  geom_bar(position="dodge")+
+  labs(x="Category", y="Count", title="Total Number of Items of Furniture by Category and \n Price greater than 1000 Riyasl")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=3))+
+  scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart2
+```
+  
+  
+
+
+
