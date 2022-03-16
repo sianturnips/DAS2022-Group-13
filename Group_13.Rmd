@@ -93,7 +93,7 @@ barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
 barchart2
 ```
   
-The below box plots explore the relationship between some categorical variables and the price of the item. Only one item is not available online so the plots including that are not very illuminating.
+The below plots explore the relationship between some explanatory variables and the price of the item.
 
 The first shows some potential outliers in some categories which are much more expensive than other items in that category. 
 
@@ -118,7 +118,7 @@ boxplot2<-ggplot(data, aes(x=other_colors, y=price, fill=other_colors))+
 boxplot2
 ```
 
-The below table shows the proportion of items that are available in different colours and costing greater than 1000 Riyals.
+The below table and plot shows the proportion of items that are available in different colours and costing greater than 1000 Riyals.
 ```{r table2, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
 
 table2<-data%>%
@@ -138,6 +138,29 @@ barchart3
 
 
 ```
+
+The below table and plot shows the proportion of items available online and costing greater than 1000 Riyals.It shows there is only one item not available online and that it costs more than 1000 Riyals.
+
+```{r table3, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
+
+table3<-data%>%
+  tabyl(sellable_online, thousandRiyals)%>%
+  adorn_percentages() %>%
+adorn_pct_formatting() %>%
+adorn_ns() 
+table3
+```
+
+```{r barchart4,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart3} Proportion of Items Availbale in Online and if the Price is Greater than 1000 Riyals." }
+
+barchart4<-ggplot(data=data, aes(x=sellable_online, group=thousandRiyals))+
+  geom_bar(aes(y=..prop.., fill=thousandRiyals),stat="count", position="dodge")+
+  labs(x="Available Online", y="Proportion")+ scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart4
+
+
+```
+
 
 
 The next three plots show the height, width and depth of the item of furniture and whether it costs more than 1000 Riyals. These show that the items that cost more than 1000 Riyals have bigger height, width, depth and general size.
