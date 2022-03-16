@@ -20,6 +20,7 @@ library(dplyr)
 library(zoo)
 library(kableExtra)
 library(scales)
+library(gridExtra)
 ```
 
 # Introduction and Cleaning the Data {#sec:intro}
@@ -91,7 +92,8 @@ barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
 barchart2
 ```
   
-The below box plots explore the relationship between some categorical variables and the price of the item.
+The below box plots explore the relationship between some categorical variables and the price of the item.Only one item is not available online so the plots including that are not very illuminating.
+
 The first shows some potential outliers in some categories which are much more expensive than other items in that category. 
 
 ```{r boxplot1,, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot1} Price of the Item of Furniture by Category." }
@@ -107,37 +109,48 @@ boxplot1
 The box plot below shows whether it is available to buy in other colours and the items price.It appears that the price range for items available in other colours is slightly higher.
 ```{r boxplot2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot2} Price of the Item of Furniture by Availability in other Colours." }
 
-boxplot2<-ggplot(data, aes(x=other_colors, y=price))+
-  geom_boxplot(fill="violetred")+
-  labs(x="Available in other Colours", y="Price(Riyals)", title="Price of Furniture by Availability in Different Colours")
- 
+boxplot2<-ggplot(data, aes(x=other_colors, y=price, fill=other_colors))+
+  geom_boxplot()+
+  labs(x="Available in other Colours", y="Price(Riyals)", title="Price of Furniture by Availability in Different Colours")+
+ scale_fill_manual("Different Colours Available", values=c("violetred","turquoise"))
+
 boxplot2
 ```
 
 The next three plots show the height, width and depth of the item of furniture and whether it costs more than 1000 Riyals. These show that the items that cost more than 1000 Riyals have bigger height, width, depth and general size.
 ```{r boxplot3, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot3} Height of Item by whether the Price is greater than 1000 Riyals." }
 
-boxplot3<-ggplot(data, aes(x=thousandRiyals, y=height))+
-  geom_boxplot(fill="violetred")+
-  labs(x="Price greater than 1000 Riyals", y="Height", title="Height of Furniture by Price greater than 1000 Riyals")
+boxplot3<-ggplot(data, aes(x=thousandRiyals, y=height, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Height", title="Height of Furniture \n by Price greater than 1000 Riyals")+
+scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
  
 boxplot3
 ```
 
 ```{r boxplot4, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot4} Width of Item by whether the Price is greater than 1000 Riyals." }
 
-boxplot4<-ggplot(data, aes(x=thousandRiyals, y=width))+
-  geom_boxplot(fill="violetred")+
-  labs(x="Price greater than 1000 Riyals", y="Width", title="Width of Furniture by Price greater than 1000 Riyals")
+boxplot4<-ggplot(data, aes(x=thousandRiyals, y=width, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Width", title="Width of Furniture \n by Price greater than 1000 Riyals")+
+scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
  
 boxplot4
 ```
 
 ```{r boxplot5, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot5} Depth of Item by whether the Price is greater than 1000 Riyals." }
 
-boxplot5<-ggplot(data, aes(x=thousandRiyals, y=depth))+
-  geom_boxplot(fill="violetred")+
-  labs(x="Price greater than 1000 Riyals", y="Depth", title="Depth of Furniture by Price greater than 1000 Riyals")
+boxplot5<-ggplot(data, aes(x=thousandRiyals, y=depth, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Depth", title="Depth of Furniture \n by Price greater than 1000 Riyals")+
+  scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+
  
 boxplot5
+```
+
+
+```{r boxplot6, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+
+grid.arrange(boxplot3, boxplot4, boxplot5, ncol=2)
 ```
