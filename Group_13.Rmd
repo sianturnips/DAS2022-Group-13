@@ -1,6 +1,6 @@
 ---
-title: "Group 13 Presentation"
-author: "Sian Turner"
+title: "Group 13 GLM - Ikea Dataset"
+author: "Group 13"
 date: "14/03/2022"
 output: pdf_document
 ---
@@ -9,4 +9,242 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r loadpackages, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(moderndive)
+library(gapminder)
+library(sjPlot)
+library(stats)
+library(jtools)
+library(dplyr)
+library(zoo)
+library(kableExtra)
+library(scales)
+library(gridExtra)
+library(janitor)
+```
 
+# Introduction and Cleaning the Data {#sec:intro}
+
+
+The dataset contains information on IKEA furniture from Saudi Arabia, a column has been added indicating if the piece of furniture costs more than 1000 Riyals.
+
+
+
+```{r dataset, echo=FALSE, eval=TRUE, warning=FALSE,message=FALSE}
+data<- read.csv("dataset13.csv")
+
+data<-mutate(data, thousandRiyals=ifelse(price>= 1000,"Y", "N"))
+head(data)
+```
+
+The summary of the data indicates that there is a lot of NA values in the height, depth and width columns.
+ 
+``` {r summary, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+summary(data)
+```
+
+To solve this, I computed the mean of the depth, height and width by the category and replaced the NA's by this value shown below.
+
+``` {r replace NA, echo=FALSE, eval=TRUE, warning=FALSE, message= FALSE}
+cols<-c("depth","height","width")
+data<-data%>%
+  group_by(category)%>%
+  mutate_at(cols, na.aggregate)
+data
+```
+
+
+# Exploratory Analysis {#sec:exploratory}
+
+This section is to explore the data set graphically and gain insight before fitting the Generalised Linear Model (GLM).
+
+This graph shows how many items of furniture cost more than 1000 Riyals, it shows that most items cost less than 1000 Riyals.
+
+```{r chart, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture with Price greater than 1000 Riyals."}
+
+chart1<-ggplot(data, aes(x=thousandRiyals))+
+  geom_bar(fill="violetred")+
+  labs(x="Price>1000 Riyals", y="Count", title="No of Items costing greater then 1000 Riyals")
+
+chart1
+
+
+```
+
+This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart. It can be seen that the lowest number of furniture items is for Room dividers and the highest is for Chairs. There is a lot of variability in the number of items in each category.
+
+```{r table1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+table1<-data%>%
+  group_by(category)%>%
+  summarize(count=n())%>%
+ kable(caption='\\label{tab:table1} Total number of items of furniture by category') %>%
+kable_styling(font_size = 8, latex_options = "hold_position", full_width=FALSE)
+table1
+
+```
+
+```{r barchart1, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture by Category."}
+
+barchart1<-ggplot(data=data, aes(x=category))+
+  geom_bar(fill="violetred")+
+  labs(x="Category", y="Count", title="Total Number of Items of Furniture by Category")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=5))
+barchart1 
+```
+  
+The barchart below is showing the total number in each category by if they are priced above or below 1000 Riyals. It shows that some categories have no items priced greater than 1000 Riyals.
+
+```{r barchart2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart2} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals."}
+barchart2<-ggplot(data=data, aes(x=category, fill=thousandRiyals))+
+  geom_bar(position="dodge")+
+  labs(x="Category", y="Count", title="Total Number of Items of Furniture by Category and \n Price greater than 1000 Riyasl")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=3))+
+  scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart2
+```
+  
+The below plots explore the relationship between some explanatory variables and the price of the item.
+
+The first shows some potential outliers in some categories which are much more expensive than other items in that category. 
+
+```{r boxplot1,, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot1} Price of the Item of Furniture by Category." }
+
+boxplot1<-ggplot(data, aes(x=category, y=price))+
+  geom_boxplot(fill="violetred")+
+  labs(x="Category", y="Price(Riyals)", title="Price of Furniture by Category")+
+  scale_x_discrete(labels=wrap_format(2))+
+  theme(axis.text=element_text(size=3))
+boxplot1
+```
+
+The box plot below shows whether it is available to buy in other colours and the items price. It appears that the price range for items available in other colours is slightly higher.
+```{r boxplot2, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot2} Price of the Item of Furniture by Availability in other Colours." }
+
+boxplot2<-ggplot(data, aes(x=other_colors, y=price, fill=other_colors))+
+  geom_boxplot()+
+  labs(x="Available in other Colours", y="Price(Riyals)", title="Price of Furniture by Availability in Different Colours")+
+ scale_fill_manual("Different Colours Available", values=c("violetred","turquoise"))
+
+boxplot2
+```
+
+The below table and plot shows the proportion of items that are available in different colours and costing greater than 1000 Riyals.
+```{r table2, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
+
+table2<-data%>%
+  tabyl(thousandRiyals, other_colors)%>%
+  adorn_percentages() %>%
+adorn_pct_formatting() %>%
+adorn_ns() 
+table2
+```
+
+```{r barchart3,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart3} Proportion of Items Availbale in different Colours and if the Price is Greater than 1000 Riyals." }
+
+barchart3<-ggplot(data=data, aes(x=other_colors, group=thousandRiyals))+
+  geom_bar(aes(y=..prop.., fill=thousandRiyals),stat="count", position="dodge")+
+  labs(x="Available in Other Colours", y="Proportion")+ scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart3
+
+
+```
+
+The below table and plot shows the proportion of items available online and costing greater than 1000 Riyals.It shows there is only one item not available online and that it costs more than 1000 Riyals.
+
+```{r table3, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
+
+table3<-data%>%
+  tabyl(thousandRiyals, sellable_online)%>%
+  adorn_percentages() %>%
+adorn_pct_formatting() %>%
+adorn_ns() 
+table3
+```
+
+```{r barchart4,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart4} Proportion of Items Availbale in Online and if the Price is Greater than 1000 Riyals." }
+
+barchart4<-ggplot(data=data, aes(x=sellable_online, group=thousandRiyals))+
+  geom_bar(aes(y=..prop.., fill=thousandRiyals),stat="count", position="dodge")+
+  labs(x="Available Online", y="Proportion")+ scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+barchart4
+
+
+```
+
+
+
+The next three plots show the height, width and depth of the item of furniture and whether it costs more than 1000 Riyals. These show that the items that cost more than 1000 Riyals have bigger height, width, depth and general size.
+
+```{r boxplot3, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot3} Height of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot3<-ggplot(data, aes(x=thousandRiyals, y=height, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Height", title="Height of Furniture \n by Price greater than 1000 Riyals")+
+scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+ 
+boxplot3
+```
+
+```{r boxplot4, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot4} Width of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot4<-ggplot(data, aes(x=thousandRiyals, y=width, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Width", title="Width of Furniture \n by Price greater than 1000 Riyals")+
+scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+ 
+boxplot4
+```
+
+```{r boxplot5, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:boxplot5} Depth of Item by whether the Price is greater than 1000 Riyals." }
+
+boxplot5<-ggplot(data, aes(x=thousandRiyals, y=depth, fill=thousandRiyals))+
+  geom_boxplot()+
+  labs(x="Price greater than 1000 Riyals", y="Depth", title="Depth of Furniture \n by Price greater than 1000 Riyals")+
+  scale_fill_manual("Price>1000 Riyals", values=c("violetred","turquoise"))
+
+ 
+boxplot5
+```
+
+
+```{r boxplot6, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+
+grid.arrange(boxplot3, boxplot4, boxplot5, ncol=2)
+```
+
+
+
+Below are scatter plots showing the price against the height, width and depth of the item of furniture, with the colour showing if the item costs more than 1000 Riyals.
+
+```{r scatterplot1, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot1} Height of Item against Price." }
+
+scatterplot1<-ggplot(data, aes(x=height, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Height", y="Price", title="Height vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot1
+
+```
+
+```{r scatterplot2, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot2} Width of Item against Price." }
+
+scatterplot2<-ggplot(data, aes(x=width, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Width", y="Price", title="Width vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot2
+
+```
+
+```{r scatterplot3, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot3} Depth of Item against Price." }
+
+scatterplot3<-ggplot(data, aes(x=depth, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Depth", y="Price", title="Depth vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot3
+
+```
