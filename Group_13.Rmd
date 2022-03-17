@@ -34,7 +34,7 @@ The dataset contains information on IKEA furniture from Saudi Arabia, a column h
 ```{r dataset, echo=FALSE, eval=TRUE, warning=FALSE,message=FALSE}
 data<- read.csv("dataset13.csv")
 
-data<-mutate(data, thousandRiyals=ifelse(price>= 1000,"Yes", "No"))
+data<-mutate(data, thousandRiyals=ifelse(price>= 1000,"Y", "N"))
 head(data)
 ```
 
@@ -58,6 +58,19 @@ data
 # Exploratory Analysis {#sec:exploratory}
 
 This section is to explore the data set graphically and gain insight before fitting the Generalised Linear Model (GLM).
+
+This graph shows how many items of furniture cost more than 1000 Riyals, it shows that most items cost less than 1000 Riyals.
+
+```{r chart, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart1} Total Number of Items of Furniture with Price greater than 1000 Riyals."}
+
+chart1<-ggplot(data, aes(x=thousandRiyals))+
+  geom_bar(fill="violetred")+
+  labs(x="Price>1000 Riyals", y="Count", title="No of Items costing greater then 1000 Riyals")
+
+chart1
+
+
+```
 
 This table shows how many pieces of furniture are in each category for the data and is then shown as a barchart. It can be seen that the lowest number of furniture items is for Room dividers and the highest is for Chairs. There is a lot of variability in the number of items in each category.
 
@@ -122,7 +135,7 @@ The below table and plot shows the proportion of items that are available in dif
 ```{r table2, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
 
 table2<-data%>%
-  tabyl(other_colors, thousandRiyals)%>%
+  tabyl(thousandRiyals, other_colors)%>%
   adorn_percentages() %>%
 adorn_pct_formatting() %>%
 adorn_ns() 
@@ -144,14 +157,14 @@ The below table and plot shows the proportion of items available online and cost
 ```{r table3, eval=TRUE, echo=FALSE,warning=FALSE,message=FALSE}
 
 table3<-data%>%
-  tabyl(sellable_online, thousandRiyals)%>%
+  tabyl(thousandRiyals, sellable_online)%>%
   adorn_percentages() %>%
 adorn_pct_formatting() %>%
 adorn_ns() 
 table3
 ```
 
-```{r barchart4,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart3} Proportion of Items Availbale in Online and if the Price is Greater than 1000 Riyals." }
+```{r barchart4,echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:barchart4} Proportion of Items Availbale in Online and if the Price is Greater than 1000 Riyals." }
 
 barchart4<-ggplot(data=data, aes(x=sellable_online, group=thousandRiyals))+
   geom_bar(aes(y=..prop.., fill=thousandRiyals),stat="count", position="dodge")+
@@ -204,5 +217,34 @@ grid.arrange(boxplot3, boxplot4, boxplot5, ncol=2)
 
 
 
+Below are scatter plots showing the price against the height, width and depth of the item of furniture, with the colour showing if the item costs more than 1000 Riyals.
 
+```{r scatterplot1, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot1} Height of Item against Price." }
 
+scatterplot1<-ggplot(data, aes(x=height, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Height", y="Price", title="Height vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot1
+
+```
+
+```{r scatterplot2, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot2} Width of Item against Price." }
+
+scatterplot2<-ggplot(data, aes(x=width, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Width", y="Price", title="Width vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot2
+
+```
+
+```{r scatterplot3, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='70%',fig.align='center', fig.pos='H', fig.cap="\\label{fig:scatterplot3} Depth of Item against Price." }
+
+scatterplot3<-ggplot(data, aes(x=depth, y=price, col=thousandRiyals))+
+  geom_point()+
+  labs(x="Depth", y="Price", title="Depth vs Price")+
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+scatterplot3
+
+```
