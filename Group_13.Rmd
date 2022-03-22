@@ -2,9 +2,11 @@
 title: "Group 13 GLM - Ikea Dataset"
 author: "Group 13"
 date: "14/03/2022"
+header-includes:
+- \usepackage{fontspec}
 output:
-  pdf_document:
-    latex_engine: pdflatex
+   html_document:
+     latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
@@ -262,8 +264,7 @@ In order to fit a Generalised Linear Model, the thousandRiyals column is transfo
 
 
 
-data$thousandRiyals [data$thousandRiyals == "Y"] <- 1
-data$thousandRiyals [data$thousandRiyals == "N"] <- 0
+
 
 
 
@@ -306,11 +307,11 @@ The model p values for the variable sellable_online was found to be greater than
 
 ### Selection of variables
 
-We tried different combinations of the variables in the dataset except to check for variables appropriate to be included in the model using step function to compare the Akaike information criterion (AIC) values. The combination of variables which gave the lowest AIC value was chosen to be included in the model.
+We tried different combinations of the variables in the dataset except sellable_online to check for variables appropriate to be included in the model using step function to compare the Akaike information criterion (AIC) values. The combination of variables which gave the lowest AIC value was chosen to be included in the model.
         
 
 
-```{r model , eval=TRUE, echo=FALSE, error=FALSE, message=FALSE}
+```{r model , eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 
 
 test.model <- glm(thousandRiyals~category+other_colors+depth+height+width, family = binomial(link = "logit"), data = data)
@@ -335,43 +336,88 @@ $$
 $$
 
 
-    The baseline category for the binary response is ----- and the baseline category for explanatory variable "category" is bar furniture.
+
+
     
-      
+The baseline category for the binary response is N which correspond to the price less than 1000 Riyals and the baseline category for explanatory variable "category" is bar furniture. 
       The difference between null deviance, `r step_out$null.deviance` and residual deviance,
 `r step_out$deviance`  was found to be `r step_out$null.deviance-step_out$deviance` which is much larger than the 95th percentile of a $\chi^2$ (`r step_out$df.null-step_out$df.residual`) distribution value of `r qchisq(df = 18, p= 0.95)`.
  The value of deviance for this model is `r step_out$deviance`. It can be seen that deviance follows $\chi^2$ (497) distribution . As `r step_out$deviance` is less than $\chi^2$ (497) value of `r qchisq(df = 497, p= 0.95)`, we don't have evidence of lack of fit.
 
 
+    
 ## Checking Predicted values
 
-```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE}
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 m1 <- glm(thousandRiyals~category+height+width, data = data, family = binomial(link = "logit"))
 summary(m1)
-confint(m1)
+
 
 
 p1.hat <-  predict ( m1, type = "response")
 
 library(vcdExtra)
-hl1 <- HLtest(m1, g = 5)
+hl1 <- HLtest(m1, g = 8)
 hl1
 
 
 ```
  Hosmer-Lemeshow goodness of fit test was used to test for goodness of model fit.`r hl1$p.value`  is greater than 0.05, it indicates no lack of fit.
 
+### ROC curve and AUC for the model fitted
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+library(ROCR)
+
+data.hat <-  predict ( m1, data, type = "response")
+score <- prediction(data.hat,data$thousandRiyals)
+perf <- performance(score,"tpr","fpr")
+auc <- performance(score,"auc")
+perfd <- data.frame(x= perf@x.values[1][[1]], y=perf@y.values[1][[1]])
+p4.hat<- ggplot(perfd, aes(x= x, y=y)) + geom_line() +
+xlab("False positive rate") + ylab("True positive rate") +
+ggtitle(paste("Area under the curve:", round(auc@y.values[[1]], 3)))
+p4.hat
+```
+
+The area under the curve is 0.895, which is greater than 0.5, which indicates good performance of the model.
 
 To quantify the effect of each of the predictors, we checked the odds ratios.
 ```{r odds, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='90%',fig.align='left', fig.pos='H', fig.cap="\\label{fig:odds} Odds ratios of each of the predictors." }
 
-plot_model(m1, show.values = TRUE)
+plot_model(m1, show.values = TRUE, axis.lim = c(0.01,100))
 
 
 
 ```
+We also plotted the predicted probabilities of the price being less than 1000 Riyals against the category, height and width of the furniture. We observe the differences category, height and width variables make on the price value.
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+set_theme(
+  geom.label.size = 0.3,
+  geom.label.color = "grey50",
+  title.color = "red", 
+  title.size =0.5, 
+  axis.angle.x = 45, 
+  axis.textcolor = "blue", 
+  base = theme_bw()
+)
+
+plot_model(m1,type="pred",terms="category")
+plot_model(m1,type="pred",terms="height")
+plot_model(m1,type="pred",terms="width")
+```
+##Fit the generalized Linear Model using probit link function
+In addition to fitting the GLM using logit link function, we tried to fit the model using probit link function to check for a better fit.
+
+```{r,eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+test.model2 <- glm(thousandRiyals~category+other_colors+depth+height+width, family = binomial(link = 'probit'), data = data)
+
+step_out2 <- step(test.model2, direction = 'both')
+summary(step_out2)
+
+```
 
 
+The estimates we get are slightly different from the output obtained using logit link function as can be observed from the output. The p values are small and hence all variables are significant in the model.The goodness of fit based on residual deviance
 
 
 
