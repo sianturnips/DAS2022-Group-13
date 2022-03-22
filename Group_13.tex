@@ -1,0 +1,1049 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{Group 13 GLM - Ikea Dataset}
+\author{Group 13}
+\date{14/03/2022}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Group 13 GLM - Ikea Dataset},
+  pdfauthor={Group 13},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\hypertarget{sec:intro}{%
+\section{Introduction and Cleaning the Data}\label{sec:intro}}
+
+The dataset contains information on IKEA furniture from Saudi Arabia, a
+column has been added indicating if the piece of furniture costs more
+than 1000 Riyals.
+
+\begin{verbatim}
+##   X  item_id                   category price sellable_online other_colors
+## 1 1 60406785                     Chairs   149            TRUE           No
+## 2 2 99221446             Tables & desks  5465            TRUE           No
+## 3 3 29221765 Bookcases & shelving units   660            TRUE           No
+## 4 4 20403374          Sofas & armchairs   395            TRUE          Yes
+## 5 5 89256262                     Chairs  1895            TRUE          Yes
+## 6 6 50165079          Nursery furniture   375            TRUE           No
+##   depth height width thousandRiyals
+## 1    44    103    52              N
+## 2    NA     NA    NA              Y
+## 3    35    176    86              N
+## 4    NA     NA    NA              N
+## 5   164    104   117              Y
+## 6    53     93    52              N
+\end{verbatim}
+
+The summary of the data indicates that there is a lot of NA values in
+the height, depth and width columns.
+
+\begin{verbatim}
+##        X            item_id           category             price       
+##  Min.   :  1.0   Min.   :   91415   Length:500         Min.   :   3.0  
+##  1st Qu.:125.8   1st Qu.:20344743   Class :character   1st Qu.: 168.8  
+##  Median :250.5   Median :49284139   Mode  :character   Median : 457.0  
+##  Mean   :250.5   Mean   :48073026                      Mean   : 991.1  
+##  3rd Qu.:375.2   3rd Qu.:70414743                      3rd Qu.:1245.0  
+##  Max.   :500.0   Max.   :99305158                      Max.   :8551.0  
+##                                                                        
+##  sellable_online other_colors           depth            height     
+##  Mode :logical   Length:500         Min.   :  1.00   Min.   :  3.0  
+##  FALSE:1         Class :character   1st Qu.: 37.00   1st Qu.: 68.0  
+##  TRUE :499       Mode  :character   Median : 46.00   Median : 83.0  
+##                                     Mean   : 53.34   Mean   :102.3  
+##                                     3rd Qu.: 60.00   3rd Qu.:123.8  
+##                                     Max.   :252.00   Max.   :251.0  
+##                                     NA's   :191      NA's   :146    
+##      width       thousandRiyals    
+##  Min.   :  2.0   Length:500        
+##  1st Qu.: 56.0   Class :character  
+##  Median : 80.0   Mode  :character  
+##  Mean   :101.1                     
+##  3rd Qu.:134.2                     
+##  Max.   :367.0                     
+##  NA's   :80
+\end{verbatim}
+
+To solve this, I computed the mean of the depth, height and width by the
+category and replaced the NA's by this value shown below.
+
+\begin{verbatim}
+## # A tibble: 500 x 10
+## # Groups:   category [17]
+##        X  item_id category price sellable_online other_colors depth height width
+##    <int>    <int> <chr>    <dbl> <lgl>           <chr>        <dbl>  <dbl> <dbl>
+##  1     1 60406785 Chairs     149 TRUE            No            44    103    52  
+##  2     2 99221446 Tables ~  5465 TRUE            No            50.5   65.7  74.1
+##  3     3 29221765 Bookcas~   660 TRUE            No            35    176    86  
+##  4     4 20403374 Sofas &~   395 TRUE            Yes          107.    76.6 162. 
+##  5     5 89256262 Chairs    1895 TRUE            Yes          164    104   117  
+##  6     6 50165079 Nursery~   375 TRUE            No            53     93    52  
+##  7     7 40284191 Sofas &~   150 TRUE            No           107.    15   162. 
+##  8     8 19291315 Cabinet~   375 TRUE            No            47     92    45  
+##  9     9   439468 Wardrob~   995 TRUE            No            47    186   120  
+## 10    10 49252553 Chairs     400 TRUE            No            61     87    56  
+## # ... with 490 more rows, and 1 more variable: thousandRiyals <chr>
+\end{verbatim}
+
+\hypertarget{sec:exploratory}{%
+\section{Exploratory Analysis}\label{sec:exploratory}}
+
+This section is to explore the data set graphically and gain insight
+before fitting the Generalised Linear Model (GLM).
+
+This graph shows how many items of furniture cost more than 1000 Riyals,
+it shows that most items cost less than 1000 Riyals.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/chart-1} 
+
+}
+
+\caption{\label{fig:barchart1} Total Number of Items of Furniture with Price greater than 1000 Riyals.}\label{fig:chart}
+\end{figure}
+
+This table shows how many pieces of furniture are in each category for
+the data and is then shown as a barchart. It can be seen that the lowest
+number of furniture items is for Room dividers and the highest is for
+Chairs. There is a lot of variability in the number of items in each
+category.
+
+\begin{table}[!h]
+
+\caption{\label{tab:table1}\label{tab:table1} Total number of items of furniture by category}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{l|r}
+\hline
+category & count\\
+\hline
+Bar furniture & 8\\
+\hline
+Beds & 30\\
+\hline
+Bookcases \& shelving units & 71\\
+\hline
+Cabinets \& cupboards & 47\\
+\hline
+Café furniture & 3\\
+\hline
+Chairs & 74\\
+\hline
+Chests of drawers \& drawer units & 13\\
+\hline
+Children's furniture & 14\\
+\hline
+Nursery furniture & 18\\
+\hline
+Outdoor furniture & 33\\
+\hline
+Room dividers & 1\\
+\hline
+Sideboards, buffets \& console tables & 4\\
+\hline
+Sofas \& armchairs & 51\\
+\hline
+Tables \& desks & 67\\
+\hline
+Trolleys & 3\\
+\hline
+TV \& media furniture & 27\\
+\hline
+Wardrobes & 36\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/barchart1-1} 
+
+}
+
+\caption{\label{fig:barchart1} Total Number of Items of Furniture by Category.}\label{fig:barchart1}
+\end{figure}
+
+The barchart below is showing the total number in each category by if
+they are priced above or below 1000 Riyals. It shows that some
+categories have no items priced greater than 1000 Riyals.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/barchart2-1} 
+
+}
+
+\caption{\label{fig:barchart2} Total Number of Items of Furniture by Category and if they cost greater than 1000 Riyals.}\label{fig:barchart2}
+\end{figure}
+
+The below plots explore the relationship between some explanatory
+variables and the price of the item.
+
+The first shows some potential outliers in some categories which are
+much more expensive than other items in that category.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/boxplot1,-1} 
+
+}
+
+\caption{\label{fig:boxplot1} Price of the Item of Furniture by Category.}\label{fig:boxplot1,}
+\end{figure}
+
+The box plot below shows whether it is available to buy in other colours
+and the items price. It appears that the price range for items available
+in other colours is slightly higher.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/boxplot2-1} 
+
+}
+
+\caption{\label{fig:boxplot2} Price of the Item of Furniture by Availability in other Colours.}\label{fig:boxplot2}
+\end{figure}
+
+The below table and plot shows the proportion of items that are
+available in different colours and costing greater than 1000 Riyals.
+
+\begin{verbatim}
+##  thousandRiyals          No         Yes
+##               N 64.1% (227) 35.9% (127)
+##               Y 50.0%  (73) 50.0%  (73)
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/barchart3-1} 
+
+}
+
+\caption{\label{fig:barchart3} Proportion of Items Availbale in different Colours and if the Price is Greater than 1000 Riyals.}\label{fig:barchart3}
+\end{figure}
+
+The below table and plot shows the proportion of items available online
+and costing greater than 1000 Riyals.It shows there is only one item not
+available online and that it costs more than 1000 Riyals.
+
+\begin{verbatim}
+##  thousandRiyals    FALSE         TRUE
+##               N 0.0% (0) 100.0% (354)
+##               Y 0.7% (1)  99.3% (145)
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/barchart4-1} 
+
+}
+
+\caption{\label{fig:barchart4} Proportion of Items Availbale in Online and if the Price is Greater than 1000 Riyals.}\label{fig:barchart4}
+\end{figure}
+
+The next three plots show the height, width and depth of the item of
+furniture and whether it costs more than 1000 Riyals. These show that
+the items that cost more than 1000 Riyals have bigger height, width,
+depth and general size.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/boxplot3-1} 
+
+}
+
+\caption{\label{fig:boxplot3} Height of Item by whether the Price is greater than 1000 Riyals.}\label{fig:boxplot3}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/boxplot4-1} 
+
+}
+
+\caption{\label{fig:boxplot4} Width of Item by whether the Price is greater than 1000 Riyals.}\label{fig:boxplot4}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/boxplot5-1} 
+
+}
+
+\caption{\label{fig:boxplot5} Depth of Item by whether the Price is greater than 1000 Riyals.}\label{fig:boxplot5}
+\end{figure}
+
+\includegraphics{Group_13_files/figure-latex/boxplot6-1.pdf}
+
+Below are scatter plots showing the price against the height, width and
+depth of the item of furniture, with the colour showing if the item
+costs more than 1000 Riyals.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/scatterplot1-1} 
+
+}
+
+\caption{\label{fig:scatterplot1} Height of Item against Price.}\label{fig:scatterplot1}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/scatterplot2-1} 
+
+}
+
+\caption{\label{fig:scatterplot2} Width of Item against Price.}\label{fig:scatterplot2}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{Group_13_files/figure-latex/scatterplot3-1} 
+
+}
+
+\caption{\label{fig:scatterplot3} Depth of Item against Price.}\label{fig:scatterplot3}
+\end{figure}
+
+\hypertarget{sec:glm}{%
+\section{Fitting a Generalised Linear Model}\label{sec:glm}}
+
+In order to fit a Generalised Linear Model, the thousandRiyals column is
+transformed to give the value 1 if the price is greater than or equal to
+1000 Riyals and 0 otherwise.
+
+\begin{verbatim}
+## Rows: 500
+## Columns: 10
+## Groups: category [17]
+## $ X               <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,~
+## $ item_id         <int> 60406785, 99221446, 29221765, 20403374, 89256262, 5016~
+## $ category        <fct> "Chairs", "Tables & desks", "Bookcases & shelving unit~
+## $ price           <dbl> 149, 5465, 660, 395, 1895, 375, 150, 375, 995, 400, 18~
+## $ sellable_online <fct> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, ~
+## $ other_colors    <fct> No, No, No, Yes, Yes, No, No, No, No, No, Yes, No, Yes~
+## $ depth           <dbl> 44.00000, 50.45455, 35.00000, 106.92593, 164.00000, 53~
+## $ height          <dbl> 103.00000, 65.65217, 176.00000, 76.59375, 104.00000, 9~
+## $ width           <dbl> 52.00000, 74.10909, 86.00000, 161.63636, 117.00000, 52~
+## $ thousandRiyals  <fct> 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, ~
+\end{verbatim}
+
+\hypertarget{sec:select}{%
+\subsection{Select input variables to the model}\label{sec:select}}
+
+\hypertarget{analysis-of-sellable_online-and-item_id-variables}{%
+\subsubsection{Analysis of sellable\_online and item\_id
+variables}\label{analysis-of-sellable_online-and-item_id-variables}}
+
+We tried to fit a generalized linear model using categorical explanatory
+variable sellable\_online and binary response variable thousandRiyals to
+check for any relationship between the two variables. The summary of the
+data is given by the table below.
+
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-1}\label{tab:reg} Summary of the data.}
+\centering
+\begin{tabular}[t]{l|l|l}
+\hline
+sellable\_online & 0 & 1\\
+\hline
+FALSE & 0.0\%   (0) & 100.0\%   (1)\\
+\hline
+TRUE & 70.9\% (354) & 29.1\% (145)\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = thousandRiyals ~ sellable_online, family = binomial(link = "logit"), 
+##     data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.8286  -0.8286  -0.8286   1.5722   1.5722  
+## 
+## Coefficients:
+##                     Estimate Std. Error z value Pr(>|z|)
+## (Intercept)            13.57     535.41   0.025    0.980
+## sellable_onlineTRUE   -14.46     535.41  -0.027    0.978
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 603.93  on 499  degrees of freedom
+## Residual deviance: 601.47  on 498  degrees of freedom
+## AIC: 605.47
+## 
+## Number of Fisher Scoring iterations: 12
+\end{verbatim}
+
+The model p values for the variable sellable\_online was found to be
+greater than 0.05 and the variable sellable\_online was omitted from
+further analysis.The item\_id variable was also omitted from analysis as
+it only gives the unique identity of the item and does not have
+statistical significance.
+
+\hypertarget{selection-of-variables}{%
+\subsubsection{Selection of variables}\label{selection-of-variables}}
+
+We tried different combinations of the variables in the dataset except
+to check for variables appropriate to be included in the model using
+step function to compare the Akaike information criterion (AIC) values.
+The combination of variables which gave the lowest AIC value was chosen
+to be included in the model.
+
+\begin{verbatim}
+## Start:  AIC=403
+## thousandRiyals ~ category + other_colors + depth + height + width
+## 
+##                Df Deviance    AIC
+## - depth         1   361.01 401.01
+## - other_colors  1   361.09 401.09
+## <none>              361.00 403.00
+## - height        1   388.31 428.31
+## - category     16   463.07 473.07
+## - width         1   466.89 506.89
+## 
+## Step:  AIC=401.01
+## thousandRiyals ~ category + other_colors + height + width
+## 
+##                Df Deviance    AIC
+## - other_colors  1   361.11 399.11
+## <none>              361.01 401.01
+## + depth         1   361.00 403.00
+## - height        1   388.77 426.77
+## - category     16   474.07 482.07
+## - width         1   474.11 512.11
+## 
+## Step:  AIC=399.11
+## thousandRiyals ~ category + height + width
+## 
+##                Df Deviance    AIC
+## <none>              361.11 399.11
+## + other_colors  1   361.01 401.01
+## + depth         1   361.09 401.09
+## - height        1   388.78 424.78
+## - category     16   474.38 480.38
+## - width         1   476.02 512.02
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = thousandRiyals ~ category + height + width, family = binomial(link = "logit"), 
+##     data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4036  -0.6753  -0.1350   0.2557   2.9258  
+## 
+## Coefficients:
+##                                                Estimate Std. Error z value
+## (Intercept)                                  -4.878e+00  9.979e-01  -4.888
+## categoryBeds                                 -2.940e+00  1.083e+00  -2.714
+## categoryBookcases & shelving units           -7.349e+00  1.358e+00  -5.414
+## categoryCabinets & cupboards                 -2.894e+00  1.026e+00  -2.821
+## categoryCafé furniture                       -1.761e+01  3.736e+03  -0.005
+## categoryChairs                               -4.754e-01  8.825e-01  -0.539
+## categoryChests of drawers & drawer units     -1.795e+01  1.663e+03  -0.011
+## categoryChildren's furniture                 -1.848e+01  1.504e+03  -0.012
+## categoryNursery furniture                    -1.841e+01  1.393e+03  -0.013
+## categoryOutdoor furniture                    -8.598e-01  9.637e-01  -0.892
+## categoryRoom dividers                         1.252e+01  6.523e+03   0.002
+## categorySideboards, buffets & console tables -1.860e+00  1.602e+00  -1.161
+## categorySofas & armchairs                    -2.525e+00  1.043e+00  -2.422
+## categoryTables & desks                       -2.582e-01  8.931e-01  -0.289
+## categoryTrolleys                              4.862e-01  1.609e+00   0.302
+## categoryTV & media furniture                 -4.238e+00  1.196e+00  -3.542
+## categoryWardrobes                            -4.691e+00  1.269e+00  -3.696
+## height                                        2.480e-02  5.224e-03   4.747
+## width                                         3.524e-02  4.659e-03   7.563
+##                                              Pr(>|z|)    
+## (Intercept)                                  1.02e-06 ***
+## categoryBeds                                 0.006648 ** 
+## categoryBookcases & shelving units           6.18e-08 ***
+## categoryCabinets & cupboards                 0.004787 ** 
+## categoryCafé furniture                       0.996238    
+## categoryChairs                               0.590098    
+## categoryChests of drawers & drawer units     0.991389    
+## categoryChildren's furniture                 0.990196    
+## categoryNursery furniture                    0.989458    
+## categoryOutdoor furniture                    0.372339    
+## categoryRoom dividers                        0.998469    
+## categorySideboards, buffets & console tables 0.245717    
+## categorySofas & armchairs                    0.015434 *  
+## categoryTables & desks                       0.772532    
+## categoryTrolleys                             0.762468    
+## categoryTV & media furniture                 0.000397 ***
+## categoryWardrobes                            0.000219 ***
+## height                                       2.07e-06 ***
+## width                                        3.94e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 603.93  on 499  degrees of freedom
+## Residual deviance: 361.11  on 481  degrees of freedom
+## AIC: 399.11
+## 
+## Number of Fisher Scoring iterations: 17
+\end{verbatim}
+
+Using the step function, the variables category, height and width were
+found to be included in the model for a good fit of data. The fitted
+model is given as follows
+
+\[
+\begin{equation}
+\begin{split}\ln \left(\frac{p}{1-p}\right) &=\alpha+\beta \cdot \text { category }+\gamma \cdot \text{height}+\delta \cdot \text{width} \\&= -4.878-2.94 \cdot \mathbb{I}_{\text {category }} \text { (Beds)}-7.349 \cdot \mathbb{I}_{\text {category }} \text { (Bookcases and shelving units)}-2.894 \cdot \mathbb{I}_{\text {category }} \text { (Cabinets and cupboards)} \\&\quad -17.61 \cdot \mathbb{I}_{\text {category }} \text { (Cafe furniture)} -0.4754\cdot \mathbb{I}_{\text {category }} \text {(Chairs)} -17.95\cdot \mathbb{I}_{\text {category }} \text {(Chests of drawers and rawer units)} \\&\quad -18.48\cdot \mathbb{I}_{\text {category }} \text {(Children’s furniture)}-18.41\cdot \mathbb{I}_{\text {category }} \text {(Nursery furniture )}-0.8598\cdot \mathbb{I}_{\text {category }} \text {(Outdoor furniture)} \\&\quad +12.52\cdot \mathbb{I}_{\text {category }} \text {(Room dividers)}-1.86\cdot \mathbb{I}_{\text {category }} \text {(RSideboards, buffets and console tables)}-2.525\cdot \mathbb{I}_{\text {category }} \text {(Sofas and armchairs)}-0.2582\cdot \mathbb{I}_{\text {category }} \text {(Tables and desks)} \\&\quad +0.4862\cdot \mathbb{I}_{\text {category }} \text {(Trolleys)}-4.238\cdot \mathbb{I}_{\text {category }} \text {(TV and media furniture)}-4.691\cdot \mathbb{I}_{\text {category }} \text {(Wardrobes)}+0.0248\cdot \text{height}+0.03524\cdot \text{width}\end{split}
+\end{equation}
+\]
+
+\begin{verbatim}
+The baseline category for the binary response is ----- and the baseline category for explanatory variable "category" is bar furniture.
+
+  
+  The difference between null deviance, 603.9327504 and residual deviance,
+\end{verbatim}
+
+361.108368 was found to be 242.8243824 which is much larger than the
+95th percentile of a \(\chi^2\) (18) distribution value of 28.8692994.
+The value of deviance for this model is 361.108368. It can be seen that
+deviance follows \(\chi^2\) (497) distribution . As 361.108368 is less
+than \(\chi^2\) (497) value of 549.9704534, we don't have evidence of
+lack of fit.
+
+\hypertarget{checking-predicted-values}{%
+\subsection{Checking Predicted values}\label{checking-predicted-values}}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = thousandRiyals ~ category + height + width, family = binomial(link = "logit"), 
+##     data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4036  -0.6753  -0.1350   0.2557   2.9258  
+## 
+## Coefficients:
+##                                                Estimate Std. Error z value
+## (Intercept)                                  -4.878e+00  9.979e-01  -4.888
+## categoryBeds                                 -2.940e+00  1.083e+00  -2.714
+## categoryBookcases & shelving units           -7.349e+00  1.358e+00  -5.414
+## categoryCabinets & cupboards                 -2.894e+00  1.026e+00  -2.821
+## categoryCafé furniture                       -1.761e+01  3.736e+03  -0.005
+## categoryChairs                               -4.754e-01  8.825e-01  -0.539
+## categoryChests of drawers & drawer units     -1.795e+01  1.663e+03  -0.011
+## categoryChildren's furniture                 -1.848e+01  1.504e+03  -0.012
+## categoryNursery furniture                    -1.841e+01  1.393e+03  -0.013
+## categoryOutdoor furniture                    -8.598e-01  9.637e-01  -0.892
+## categoryRoom dividers                         1.252e+01  6.523e+03   0.002
+## categorySideboards, buffets & console tables -1.860e+00  1.602e+00  -1.161
+## categorySofas & armchairs                    -2.525e+00  1.043e+00  -2.422
+## categoryTables & desks                       -2.582e-01  8.931e-01  -0.289
+## categoryTrolleys                              4.862e-01  1.609e+00   0.302
+## categoryTV & media furniture                 -4.238e+00  1.196e+00  -3.542
+## categoryWardrobes                            -4.691e+00  1.269e+00  -3.696
+## height                                        2.480e-02  5.224e-03   4.747
+## width                                         3.524e-02  4.659e-03   7.563
+##                                              Pr(>|z|)    
+## (Intercept)                                  1.02e-06 ***
+## categoryBeds                                 0.006648 ** 
+## categoryBookcases & shelving units           6.18e-08 ***
+## categoryCabinets & cupboards                 0.004787 ** 
+## categoryCafé furniture                       0.996238    
+## categoryChairs                               0.590098    
+## categoryChests of drawers & drawer units     0.991389    
+## categoryChildren's furniture                 0.990196    
+## categoryNursery furniture                    0.989458    
+## categoryOutdoor furniture                    0.372339    
+## categoryRoom dividers                        0.998469    
+## categorySideboards, buffets & console tables 0.245717    
+## categorySofas & armchairs                    0.015434 *  
+## categoryTables & desks                       0.772532    
+## categoryTrolleys                             0.762468    
+## categoryTV & media furniture                 0.000397 ***
+## categoryWardrobes                            0.000219 ***
+## height                                       2.07e-06 ***
+## width                                        3.94e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 603.93  on 499  degrees of freedom
+## Residual deviance: 361.11  on 481  degrees of freedom
+## AIC: 399.11
+## 
+## Number of Fisher Scoring iterations: 17
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+##                                                      2.5 %       97.5 %
+## (Intercept)                                  -7.077684e+00  -3.04738738
+## categoryBeds                                 -5.019305e+00  -0.64449280
+## categoryBookcases & shelving units           -1.008703e+01  -4.65631248
+## categoryCabinets & cupboards                 -4.861523e+00  -0.69092940
+## categoryCafé furniture                       -1.438414e+03 107.34187397
+## categoryChairs                               -2.092127e+00   1.53455659
+## categoryChests of drawers & drawer units     -6.707399e+02  33.02640385
+## categoryChildren's furniture                 -5.933030e+02  31.34768107
+## categoryNursery furniture                    -5.647900e+02  25.19400732
+## categoryOutdoor furniture                    -2.667756e+00   1.26178117
+## categoryRoom dividers                        -1.309555e+03           NA
+## categorySideboards, buffets & console tables -4.994895e+00   1.49182573
+## categorySofas & armchairs                    -4.511008e+00  -0.28932586
+## categoryTables & desks                       -1.896563e+00   1.76718828
+## categoryTrolleys                             -3.055649e+00   3.62663794
+## categoryTV & media furniture                 -6.598930e+00  -1.78222393
+## categoryWardrobes                            -7.197734e+00  -2.11461316
+## height                                        1.504886e-02   0.03566101
+## width                                         2.674378e-02   0.04506130
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'vcdExtra' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'vcd' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'gnm' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Hosmer and Lemeshow Goodness-of-Fit Test 
+## 
+## Call:
+## glm(formula = thousandRiyals ~ category + height + width, family = binomial(link = "logit"), 
+##     data = data)
+##  ChiSquare df   P_value
+##   4.026916  3 0.2585723
+\end{verbatim}
+
+Hosmer-Lemeshow goodness of fit test was used to test for goodness of
+model fit.0.2585723 is greater than 0.05, it indicates no lack of fit.
+
+To quantify the effect of each of the predictors, we checked the odds
+ratios.
+
+\begin{figure}[H]
+
+\includegraphics[width=0.9\linewidth]{Group_13_files/figure-latex/odds-1} \hfill{}
+
+\caption{\label{fig:odds} Odds ratios of each of the predictors.}\label{fig:odds}
+\end{figure}
+
+\end{document}
