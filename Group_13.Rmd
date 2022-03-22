@@ -323,10 +323,11 @@ summary(step_out)
 
 ```
 Using the step function, the variables category, height and width were found to be included in the model for a good fit of data.
+
+
+## Fit the generalized Linear Model using logit link function
+
 The fitted model is given as follows
-
-
-
 
 
 $$
@@ -351,7 +352,7 @@ The baseline category for the binary response is N which correspond to the price
 ```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 m1 <- glm(thousandRiyals~category+height+width, data = data, family = binomial(link = "logit"))
 summary(m1)
-
+summ(m1)
 
 
 p1.hat <-  predict ( m1, type = "response")
@@ -390,6 +391,7 @@ plot_model(m1, show.values = TRUE, axis.lim = c(0.01,100))
 
 ```
 We also plotted the predicted probabilities of the price being less than 1000 Riyals against the category, height and width of the furniture. We observe the differences category, height and width variables make on the price value.
+
 ```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 set_theme(
   geom.label.size = 0.3,
@@ -405,7 +407,9 @@ plot_model(m1,type="pred",terms="category")
 plot_model(m1,type="pred",terms="height")
 plot_model(m1,type="pred",terms="width")
 ```
-##Fit the generalized Linear Model using probit link function
+
+## Fit the generalized Linear Model using probit link function
+
 In addition to fitting the GLM using logit link function, we tried to fit the model using probit link function to check for a better fit.
 
 ```{r,eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
@@ -417,9 +421,104 @@ summary(step_out2)
 ```
 
 
-The estimates we get are slightly different from the output obtained using logit link function as can be observed from the output. The p values are small and hence all variables are significant in the model.The goodness of fit based on residual deviance
+The estimates we get are slightly different from the output obtained using logit link function as can be observed from the output. The p values are small and hence all variables are significant in the model.
+The goodness of fit based on residual deviance can be assessed as follows:
+The difference between null deviance, `r step_out2$null.deviance` and residual deviance,
+`r step_out2$deviance`  was found to be `r step_out2$null.deviance-step_out2$deviance` which is much larger than the 95th percentile of a $\chi^2$ (`r step_out2$df.null-step_out2$df.residual`) distribution value of `r qchisq(df = 18, p= 0.95)`.
+ The value of deviance for this model is `r step_out2$deviance`. It can be seen that deviance follows $\chi^2$ (497) distribution . As `r step_out2$deviance` is less than $\chi^2$ (497) value of `r qchisq(df = 497, p= 0.95)`, we don't have evidence of lack of fit.
+As the deviance value of this model is higher than the logit link function, the fit is better for the logit model.
+```{r}
+
+```
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+m2 <- glm(thousandRiyals~category+height+width, data = data, family = binomial(link = "probit"))
+summary(m2)
+summ(m2)
+```
+
+
+To quantify the effect of each of the predictors, we checked the odds ratios.
+
+```{r odds1, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='90%',fig.align='left', fig.pos='H', fig.cap="\\label{fig:odds} Odds ratios of each of the predictors." }
+
+plot_model(m2, show.values = TRUE, axis.lim = c(0.01,100))
+
+```
+We also plotted the predicted probabilities of the price being less than 1000 Riyals against the category, height and width of the furniture. We observe the differences category, height and width variables make on the price value when a probit link function is used instead of probit link function.
+
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+set_theme(
+  geom.label.size = 0.3,
+  geom.label.color = "grey50",
+  title.color = "red", 
+  title.size =0.5, 
+  axis.angle.x = 45, 
+  axis.textcolor = "blue", 
+  base = theme_bw()
+)
+
+plot_model(m2,type="pred",terms="category")
+plot_model(m2,type="pred",terms="height")
+plot_model(m2,type="pred",terms="width")
+```
+
+## Fit the generalized Linear Model using complementary log-log link function
 
 
 
+In addition to fitting the GLM using logit link function and probit link function, we tried to fit the model using complementary log log link function to check for a better fit.
 
+```{r,eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+test.model3 <- glm(thousandRiyals~category+other_colors+depth+height+width, family = binomial(link = 'cloglog'), data = data)
+
+step_out3 <- step(test.model3, direction = 'both')
+summary(step_out3)
+
+```
+
+
+The estimates we get are slightly different from the output obtained using logit link function and probit link fucntion as can be observed from the output. The p values are small and hence all variables are significant in the model.
+The goodness of fit based on residual deviance can be assessed as follows:
+The difference between null deviance, `r step_out3$null.deviance` and residual deviance,
+`r step_out3$deviance`  was found to be `r step_out3$null.deviance-step_out3$deviance` which is much larger than the 95th percentile of a $\chi^2$ (`r step_out3$df.null-step_out3$df.residual`) distribution value of `r qchisq(df = 18, p= 0.95)`.
+ The value of deviance for this model is `r step_out3$deviance`. It can be seen that deviance follows $\chi^2$ (497) distribution . As `r step_out3$deviance` is less than $\chi^2$ (497) value of `r qchisq(df = 497, p= 0.95)`, we don't have evidence of lack of fit.
+As the deviance value of this model is higher than both logit and probit models, the cloglog model fit is not better than any of the logit link function or the probit link function.
+
+
+
+```{r,eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+m3 <- glm(thousandRiyals~category+height+width, data = data, family = binomial(link = "cloglog"))
+summary(m3)
+summ(m3)
+```
+
+
+
+To quantify the effect of each of the predictors, we checked the odds ratios.
+
+```{r odds3, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE,out.width='90%',fig.align='left', fig.pos='H', fig.cap="\\label{fig:odds} Odds ratios of each of the predictors." }
+
+plot_model(m3, show.values = TRUE, axis.lim = c(0.01,100))
+
+
+
+```
+We also plotted the predicted probabilities of the price being less than 1000 Riyals against the category, height and width of the furniture. We observe the differences category, height and width variables make on the price value when a cloglog link function is used.
+```{r, eval=TRUE, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+set_theme(
+  geom.label.size = 0.3,
+  geom.label.color = "grey50",
+  title.color = "red", 
+  title.size =0.5, 
+  axis.angle.x = 45, 
+  axis.textcolor = "blue", 
+  base = theme_bw()
+)
+
+plot_model(m3,type="pred",terms="category")
+plot_model(m3,type="pred",terms="height")
+plot_model(m3,type="pred",terms="width")
+```
+
+As the logit model has the lowest residual deviance and all other factors are similar between logit, probit and cloglog link functions, logit model was taken as the final model.
 
