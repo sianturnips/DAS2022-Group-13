@@ -1,0 +1,53 @@
+---
+title: "Latex Writing"
+author: "Ningqi Zhang"
+date: "2022/3/22"
+output:
+  html_document:
+    df_print: paged
+  github_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r loadpackages, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+
+Original pattern of the fitted model:
+
+$$
+\begin{equation}
+  \begin{split}
+  \ln \left(\frac{p}{1-p}\right) =\alpha+\beta \cdot \text { category }+\gamma \cdot \text{height}+\delta \cdot \text{width} \\
+  = -4.878-2.94 \cdot \mathbb{I}_{\text {category }} \text { (Beds)}-7.349 \cdot \mathbb{I}_{\text {category }} \text { (Bookcases and shelving units)}-2.894 \cdot \mathbb{I}_{\text {category }} \text { (Cabinets and cupboards)} \\
+  \quad -17.61 \cdot \mathbb{I}_{\text {category }} \text { (Cafe furniture)} -0.4754\cdot \mathbb{I}_{\text {category }} \text {(Chairs)} -17.95\cdot \mathbb{I}_{\text {category }} \text {(Chests of drawers and rawer units)} \\
+  \quad -18.48\cdot \mathbb{I}_{\text {category }} \text {(Children’s furniture)}-18.41\cdot \mathbb{I}_{\text {category }} \text {(Nursery furniture )}-0.8598\cdot \mathbb{I}_{\text {category }} \text {(Outdoor furniture)} \\
+  \quad +12.52\cdot \mathbb{I}_{\text {category }} \text {(Room dividers)}-1.86\cdot \mathbb{I}_{\text {category }} \text {(RSideboards, buffets and console tables)}-2.525\cdot \mathbb{I}_{\text {category }} \text {(Sofas and armchairs)}-0.2582\cdot \mathbb{I}_{\text {category }} \text {(Tables and desks)} \\
+  \quad +0.4862\cdot \mathbb{I}_{\text {category }} \text {(Trolleys)}-4.238\cdot \mathbb{I}_{\text {category }} \text {(TV and media furniture)}-4.691\cdot \mathbb{I}_{\text {category }} \text {(Wardrobes)}+0.0248\cdot \text{height}+0.03524\cdot \text{width}
+
+\end{split}
+\end{equation}
+$$
+
+Modified model with good format:  
+
+$$
+\begin{equation}
+  \begin{split}
+  \ln \left(\frac{p}{1-p}\right) &=\alpha+\beta \cdot \text { category }+\gamma \cdot \text{height}+\delta \cdot \text{width} \\
+  &= -4.878-2.94 \cdot \mathbb{I}_{\text {category }} \text { (Beds)}-7.349 \cdot \mathbb{I}_{\text {category }} \text { (Bookcases and shelving units)}-2.894 \cdot \mathbb{I}_{\text {category }} \text { (Cabinets and cupboards)} \\
+  &\quad -17.61 \cdot \mathbb{I}_{\text {category }} \text { (Cafe furniture)} -0.4754\cdot \mathbb{I}_{\text {category }} \text {(Chairs)} -17.95\cdot \mathbb{I}_{\text {category }} \text {(Chests of drawers and rawer units)} \\
+  &\quad -18.48\cdot \mathbb{I}_{\text {category }} \text {(Children’s furniture)}-18.41\cdot \mathbb{I}_{\text {category }} \text {(Nursery furniture )}-0.8598\cdot \mathbb{I}_{\text {category }} \text {(Outdoor furniture)} \\
+  &\quad +12.52\cdot \mathbb{I}_{\text {category }} \text {(Room dividers)}-1.86\cdot \mathbb{I}_{\text {category }} \text {(RSideboards, buffets and console tables)}-2.525\cdot \mathbb{I}_{\text {category }} \text {(Sofas and armchairs)} \\
+  &\quad-0.2582\cdot \mathbb{I}_{\text {category }} \text {(Tables and desks)} +0.4862\cdot \mathbb{I}_{\text {category }} \text {(Trolleys)}-4.238\cdot \mathbb{I}_{\text {category }} \text {(TV and media furniture)} \\
+  &\quad-4.691\cdot \mathbb{I}_{\text {category }} \text {(Wardrobes)}+0.0248\cdot \text{height}+0.03524\cdot \text{width}
+
+\end{split}
+\end{equation}
+$$
+
