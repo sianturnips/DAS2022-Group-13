@@ -229,7 +229,8 @@ Below are scatter plots showing the price against the height, width and depth of
 scatterplot1<-ggplot(data, aes(x=height, y=price, col=thousandRiyals))+
   geom_point()+
   labs(x="Height", y="Price", title="Height vs Price")+
- scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))+
+  geom_smooth(method="lm", se=FALSE)
 scatterplot1
 
 ```
@@ -239,7 +240,8 @@ scatterplot1
 scatterplot2<-ggplot(data, aes(x=width, y=price, col=thousandRiyals))+
   geom_point()+
   labs(x="Width", y="Price", title="Width vs Price")+
- scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))+
+  geom_smooth(method="lm", se=FALSE)
 scatterplot2
 
 ```
@@ -249,7 +251,8 @@ scatterplot2
 scatterplot3<-ggplot(data, aes(x=depth, y=price, col=thousandRiyals))+
   geom_point()+
   labs(x="Depth", y="Price", title="Depth vs Price")+
- scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))
+ scale_color_manual("Price>1000 Riyals",values=c("violetred","turquoise"))+
+  geom_smooth(method="lm", se=FALSE)
 scatterplot3
 
 ```
